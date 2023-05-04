@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "advancedoverlay",
+	"version": "1.0.0",
+	"name": "Advanced Overlay",
+	"description": "Add a highly customizable HUD overlays.",
+	"authors": ["KHOPAN"],
+	"contact": {
+		"sources": "https://github.com/KHOPAN/Advanced-Overlay"
+	},
+
+	"license": "MIT License",
+	"icon": "assets/advancedoverlay/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"com.khopan.mods.advancedoverlay.AdvancedOverlay"
+		]
+	},
+
+	"mixins": [
+		"advancedoverlay.mixins.json"
+	],
+
+	"depends": {
+		"fabricloader": ">=0.14.17",
+		"minecraft": "~1.19.4",
+		"java": ">=17"
+	}
+}
