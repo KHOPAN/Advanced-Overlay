@@ -11,7 +11,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
 public class ConfigScreen extends ReturnableScreen {
-	public static final Component TITLE = Text.config("title");
+	//public static final Component TITLE = Text.config("title"); // TRANSLATION IS NOT LOADING/WORKING
+	public static final Component TITLE = Text.literal("Advanced Overlay Config");
 
 	public ConfigScreen(Screen screen) {
 		super(ConfigScreen.TITLE, screen);

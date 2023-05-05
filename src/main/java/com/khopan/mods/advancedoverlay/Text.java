@@ -8,4 +8,8 @@ public class Text {
 	public static Component config(String key) {
 		return Component.translatable("config." + AdvancedOverlay.MOD_ID + (key == null || key.isEmpty() ? "" : "." + key));
 	}
+
+	public static Component literal(String text) {
+		return Component.literal(text);
+	}
 }
