@@ -4,7 +4,10 @@
 	"package": "com.khopan.mods.advancedoverlay.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [],
-	"client": [],
+	"client": [
+		"PauseScreenMixin"
+	],
+
 	"injectors": {
 		"defaultRequire": 1
 	}
