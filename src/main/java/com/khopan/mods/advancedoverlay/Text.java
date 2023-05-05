@@ -5,11 +5,7 @@ import net.minecraft.network.chat.Component;
 public class Text {
 	private Text() {}
 
-	public static Component config(String key) {
-		return Component.translatable("config." + AdvancedOverlay.MOD_ID + (key == null || key.isEmpty() ? "" : "." + key));
-	}
-
-	public static Component literal(String text) {
-		return Component.literal(text);
+	public static Component config(String key, String fallback, Object... arguments) {
+		return Component.translatableWithFallback("config." + AdvancedOverlay.MOD_ID + (key == null || key.isEmpty() ? "" : "." + key), fallback, arguments);
 	}
 }
