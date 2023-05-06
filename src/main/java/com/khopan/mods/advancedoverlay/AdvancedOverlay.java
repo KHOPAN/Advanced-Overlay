@@ -16,7 +16,7 @@ import net.fabricmc.loader.api.entrypoint.EntrypointContainer;
 public class AdvancedOverlay implements ModInitializer {
 	public static final String MOD_NAME = "Advanced Overlay";
 	public static final String MOD_ID = "advancedoverlay";
-	public static final String MOD_VERSION = "1.0.0";
+	public static final Version MOD_VERSION = new Version("1.0.0");
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(AdvancedOverlay.MOD_NAME);
 
