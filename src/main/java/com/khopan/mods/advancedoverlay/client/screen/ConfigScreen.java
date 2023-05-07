@@ -22,7 +22,7 @@ public class ConfigScreen extends ReturnableScreen {
 		GridLayout layout = new GridLayout();
 		layout.defaultCellSetting().paddingHorizontal(5).paddingBottom(4).alignHorizontallyCenter();
 		RowHelper row = layout.createRowHelper(2);
-
+		row.addChild(this.setScreenButton(PanelSettingsScreen.TITLE, new PanelSettingsScreen(this)));
 		row.addChild(this.doneButton(), 2, layout.newCellSettings().paddingTop(6));
 		layout.arrangeElements();
 		FrameLayout.alignInRectangle(layout, 0, 0, this.width, this.height, 0.5f, 0.5f);

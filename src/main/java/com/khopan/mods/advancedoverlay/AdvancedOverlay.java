@@ -19,6 +19,7 @@ public class AdvancedOverlay implements ModInitializer {
 	public static final Version MOD_VERSION = new Version("1.0.0");
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(AdvancedOverlay.MOD_NAME);
+	public static final List<PanelHolder> PANEL_LIST = new ArrayList<>();
 
 	private static final List<ExtensionHolder> EXTENSION_LIST = new ArrayList<>();
 	private static final List<ModuleHolder> MODULE_LIST = new ArrayList<>();

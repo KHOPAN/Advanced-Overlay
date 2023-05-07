@@ -13,7 +13,7 @@ public class Version {
 
 	public Version(String version) {
 		try {
-			String[] split = version.split(".");
+			String[] split = version.split("\\.");
 			this.majorVersion = Integer.parseInt(split[0]);
 			this.minorVersion = Integer.parseInt(split[1]);
 			this.patchVersion = Integer.parseInt(split[2]);

@@ -25,4 +25,8 @@ public abstract class ReturnableScreen extends Screen {
 	public Button doneButton() {
 		return Button.builder(CommonComponents.GUI_DONE, button -> this.returnToLastScreen()).width(200).build();
 	}
+
+	public Button setScreenButton(Component title, Screen screen) {
+		return Button.builder(title, button -> this.minecraft.setScreen(screen)).build();
+	}
 }

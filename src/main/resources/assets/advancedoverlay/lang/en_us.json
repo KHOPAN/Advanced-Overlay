@@ -1,3 +1,22 @@
 {
-	"config.advancedoverlay.title": "Why are you not loading"
+	"config.advancedoverlay.title": "Advanced Overlay Config",
+
+	"config.advancedoverlay.panelSettings": "Panel Settings",
+	"config.advancedoverlay.panelSettings.edit": "Edit",
+	"config.advancedoverlay.panelSettings.delete": "Delete",
+
+	"config.advancedoverlay.editPanel": "Edit Panel '%s'",
+	"config.advancedoverlay.editPanel.panelName": "Panel Name",
+	"config.advancedoverlay.editPanel.overlayLocation": "Location",
+	"config.advancedoverlay.editPanel.overlayLocation.topLeft": "Top Left",
+	"config.advancedoverlay.editPanel.overlayLocation.topCenter": "Top Center",
+	"config.advancedoverlay.editPanel.overlayLocation.topRight": "Top Right",
+	"config.advancedoverlay.editPanel.overlayLocation.centerLeft": "Center Left",
+	"config.advancedoverlay.editPanel.overlayLocation.ceter": "Center",
+	"config.advancedoverlay.editPanel.overlayLocation.centerRight": "Center Right",
+	"config.advancedoverlay.editPanel.overlayLocation.bottomLeft": "Bottom Left",
+	"config.advancedoverlay.editPanel.overlayLocation.bottomCenter": "Bottom Center",
+	"config.advancedoverlay.editPanel.overlayLocation.bottomRight": "Bottom Right",
+	"config.advancedoverlay.editPanel.overlayLocation.custom": "Custom",
+	"congig.advancedoverlay.editPanel.editCustomLocation": "Edit Custom Location"
 }
