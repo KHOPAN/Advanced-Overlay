@@ -5,28 +5,26 @@ import com.khopan.mods.advancedoverlay.Text;
 import net.minecraft.network.chat.Component;
 
 public enum OverlayLocation {
-	TOP_LEFT("topLeft", "Top Left", (width, size, margin) -> margin, (height, size, margin) -> margin),
-	TOP_CENTER("topCenter", "Top Center", (width, size, margin) -> (width - size) / 2, (height, size, margin) -> margin),
-	TOP_RIGHT("topRight", "Top Right", (width, size, margin) -> width - size - margin, (height, size, margin) -> margin),
-	CENTER_LEFT("centerLeft", "Center Left", (width, size, margin) -> margin, (height, size, margin) -> (height - size) / 2),
-	CENTER("center", "Center", (width, size, margin) -> (width - size) / 2, (height, size, margin) -> (height - size) / 2),
-	CENTER_RIGHT("centerRight", "Center Right", (width, size, margin) -> width - size - margin, (height, size, margin) -> (height - size) / 2),
-	BOTTOM_LEFT("bottomLeft", "Bottom Left", (width, size, margin) -> margin, (height, size, margin) -> height - size - margin),
-	BOTTOM_CENTER("bottomCenter", "Bottom Center", (width, size, margin) -> (width - size) / 2, (height, size, margin) -> height - size - margin),
-	BOTTOM_RIGHT("bottomRight", "Bottom Right", (width, size, margin) -> width - size - margin, (height, size, margin) -> height - size - margin),
-	CUSTOM("custom", "Custom", null, null);
+	TOP_LEFT("topLeft", (width, size, margin) -> margin, (height, size, margin) -> margin),
+	TOP_CENTER("topCenter", (width, size, margin) -> (width - size) / 2, (height, size, margin) -> margin),
+	TOP_RIGHT("topRight", (width, size, margin) -> width - size - margin, (height, size, margin) -> margin),
+	CENTER_LEFT("centerLeft", (width, size, margin) -> margin, (height, size, margin) -> (height - size) / 2),
+	CENTER("center", (width, size, margin) -> (width - size) / 2, (height, size, margin) -> (height - size) / 2),
+	CENTER_RIGHT("centerRight", (width, size, margin) -> width - size - margin, (height, size, margin) -> (height - size) / 2),
+	BOTTOM_LEFT("bottomLeft", (width, size, margin) -> margin, (height, size, margin) -> height - size - margin),
+	BOTTOM_CENTER("bottomCenter", (width, size, margin) -> (width - size) / 2, (height, size, margin) -> height - size - margin),
+	BOTTOM_RIGHT("bottomRight", (width, size, margin) -> width - size - margin, (height, size, margin) -> height - size - margin),
+	CUSTOM("custom", null, null);
 
 	public static final OverlayLocation DEFAULT = OverlayLocation.TOP_LEFT;
 	public static final int MARGIN = 5;
 
 	private final String key;
-	private final String text;
 	private final LocationCalculator xFunction;
 	private final LocationCalculator yFunction;
 
-	private OverlayLocation(String key, String text, LocationCalculator xFunction, LocationCalculator yFunction) {
+	private OverlayLocation(String key, LocationCalculator xFunction, LocationCalculator yFunction) {
 		this.key = key;
-		this.text = text;
 		this.xFunction = xFunction;
 		this.yFunction = yFunction;
 	}
@@ -64,7 +62,7 @@ public enum OverlayLocation {
 	}
 
 	public Component getDisplayName() {
-		return Text.config("editPanel.overlayLocation." + this.key, this.text);
+		return Text.config("editPanel.overlayLocation." + this.key);
 	}
 
 	private interface LocationCalculator {

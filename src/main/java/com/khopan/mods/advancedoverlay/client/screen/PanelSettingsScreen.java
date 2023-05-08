@@ -18,9 +18,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 
 public class PanelSettingsScreen extends ReturnableScreen {
-	public static final Component TITLE = Text.config("panelSettings", "Panel Settings");
-	public static final Component EDIT = Text.config("panelSettings.edit", "Edit");
-	public static final Component DELETE = Text.config("panelSettings.delete", "Delete");
+	public static final Component TITLE = Text.config("panelSettings");
+	public static final Component EDIT = Text.config("panelSettings.edit");
+	public static final Component DELETE = Text.config("panelSettings.delete");
 
 	private PanelSelectionList list;
 	private Button editButton;

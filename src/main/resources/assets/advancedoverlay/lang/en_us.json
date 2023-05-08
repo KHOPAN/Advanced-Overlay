@@ -12,11 +12,11 @@
 	"config.advancedoverlay.editPanel.overlayLocation.topCenter": "Top Center",
 	"config.advancedoverlay.editPanel.overlayLocation.topRight": "Top Right",
 	"config.advancedoverlay.editPanel.overlayLocation.centerLeft": "Center Left",
-	"config.advancedoverlay.editPanel.overlayLocation.ceter": "Center",
+	"config.advancedoverlay.editPanel.overlayLocation.center": "Center",
 	"config.advancedoverlay.editPanel.overlayLocation.centerRight": "Center Right",
 	"config.advancedoverlay.editPanel.overlayLocation.bottomLeft": "Bottom Left",
 	"config.advancedoverlay.editPanel.overlayLocation.bottomCenter": "Bottom Center",
 	"config.advancedoverlay.editPanel.overlayLocation.bottomRight": "Bottom Right",
 	"config.advancedoverlay.editPanel.overlayLocation.custom": "Custom",
-	"congig.advancedoverlay.editPanel.editCustomLocation": "Edit Custom Location"
+	"config.advancedoverlay.editPanel.editCustomLocation": "Edit Custom Location"
 }

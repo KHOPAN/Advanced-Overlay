@@ -19,9 +19,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
 public class EditPanelScreen extends ReturnableScreen {
-	public static final Component PANEL_NAME = Text.config("editPanel.panelName", "Panel Name");
-	public static final Component OVERLAY_LOCATION = Text.config("editPanel.overlayLocation", "Location");
-	public static final Component EDIT_CUSTOM_LOCATION = Text.config("editPanel.editCustomLocation", "Edit Custom Location");
+	public static final Component PANEL_NAME = Text.config("editPanel.panelName");
+	public static final Component OVERLAY_LOCATION = Text.config("editPanel.overlayLocation");
+	public static final Component EDIT_CUSTOM_LOCATION = Text.config("editPanel.editCustomLocation");
 
 	private final int index;
 
@@ -46,13 +46,14 @@ public class EditPanelScreen extends ReturnableScreen {
 			holder.name = Component.literal(text);
 		});
 
-		this.locationButton = CycleButton.builder(OverlayLocation :: getDisplayName).withValues(OverlayLocation.values()).withInitialValue(OverlayLocation.DEFAULT).create(0, 0, 150, 20, EditPanelScreen.OVERLAY_LOCATION, (button, location) -> {
+		this.locationButton = CycleButton.builder(OverlayLocation :: getDisplayName).withValues(OverlayLocation.values()).withInitialValue(holder.overlayLocation).create(0, 0, 150, 20, EditPanelScreen.OVERLAY_LOCATION, (button, location) -> {
+			holder.overlayLocation = location;
 			this.buttonActivation(location);
 		});
 
 		this.editCustomLocationButton = Button.builder(EditPanelScreen.EDIT_CUSTOM_LOCATION, button -> {
 
-		}).build();
+		})/*.tooltip(Tooltip.create(null))*/.build();
 
 		this.buttonActivation(this.locationButton.getValue());
 		row.addChild(box);
@@ -80,7 +81,6 @@ public class EditPanelScreen extends ReturnableScreen {
 	}
 
 	private static Component getTitle(int index) {
-		Component name = AdvancedOverlay.PANEL_LIST.get(index).name;
-		return Text.config("editPanel", "Edit Panel '" + (name == null ? "null" : name.getString()) + "'", name);
+		return Text.config("editPanel", AdvancedOverlay.PANEL_LIST.get(index).name);
 	}
 }
