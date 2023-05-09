@@ -7,6 +7,7 @@
 
 	"config.advancedoverlay.editPanel": "Edit Panel '%s'",
 	"config.advancedoverlay.editPanel.panelName": "Panel Name",
+	"config.advancedoverlay.editPanel.visible": "Visible",
 	"config.advancedoverlay.editPanel.overlayLocation": "Location",
 	"config.advancedoverlay.editPanel.overlayLocation.topLeft": "Top Left",
 	"config.advancedoverlay.editPanel.overlayLocation.topCenter": "Top Center",
@@ -18,5 +19,16 @@
 	"config.advancedoverlay.editPanel.overlayLocation.bottomCenter": "Bottom Center",
 	"config.advancedoverlay.editPanel.overlayLocation.bottomRight": "Bottom Right",
 	"config.advancedoverlay.editPanel.overlayLocation.custom": "Custom",
-	"config.advancedoverlay.editPanel.editCustomLocation": "Edit Custom Location"
+	"config.advancedoverlay.editPanel.editCustomLocation": "Edit Custom Location",
+	"config.advancedoverlay.editPanel.originLocation": "Origin Location",
+	"config.advancedoverlay.editPanel.originLocation.topLeft": "Top Left",
+	"config.advancedoverlay.editPanel.originLocation.topCenter": "Top Center",
+	"config.advancedoverlay.editPanel.originLocation.topRight": "Top Right",
+	"config.advancedoverlay.editPanel.originLocation.centerLeft": "Center Left",
+	"config.advancedoverlay.editPanel.originLocation.center": "Center",
+	"config.advancedoverlay.editPanel.originLocation.centerRight": "Center Right",
+	"config.advancedoverlay.editPanel.originLocation.bottomLeft": "Bottom Left",
+	"config.advancedoverlay.editPanel.originLocation.bottomCenter": "Bottom Center",
+	"config.advancedoverlay.editPanel.originLocation.bottomRight": "Bottom Right",
+	"config.advancedoverlay.editPanel.autoInFrame": "Auto In Frame"
 }

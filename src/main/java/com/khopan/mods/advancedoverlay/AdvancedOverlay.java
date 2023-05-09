@@ -1,5 +1,6 @@
 package com.khopan.mods.advancedoverlay;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,11 +8,15 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.khopan.data.BinaryConfig;
+import com.khopan.data.BinaryConfigArray;
+import com.khopan.data.BinaryConfigObject;
 import com.khopan.mods.advancedoverlay.api.extension.IAdvancedOverlayExtension;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.entrypoint.EntrypointContainer;
+import net.minecraft.client.Minecraft;
 
 public class AdvancedOverlay implements ModInitializer {
 	public static final String MOD_NAME = "Advanced Overlay";
@@ -74,5 +79,37 @@ public class AdvancedOverlay implements ModInitializer {
 
 	public static List<ModuleHolder> getModuleList() {
 		return Collections.unmodifiableList(AdvancedOverlay.MODULE_LIST);
+	}
+
+	public static void savePanel() {
+		Thread thread = new Thread(() -> {
+			try {
+				BinaryConfigArray panelList = new BinaryConfigArray();
+
+				for(int i = 0; i < AdvancedOverlay.PANEL_LIST.size(); i++) {
+					PanelHolder holder = AdvancedOverlay.PANEL_LIST.get(i);
+					BinaryConfigObject object = new BinaryConfigObject();
+					object.putString("Name", holder.name.getString());
+					object.putInt("Location", holder.overlayLocation.getIndex());
+					object.putInt("OriginLocation", holder.originLocation.getIndex());
+					object.putBoolean("AutoInFrameMode", holder.autoInFrame.toBoolean());
+					panelList.addObject(object);
+				}
+
+				BinaryConfigObject object = new BinaryConfigObject();
+				object.putArray("PanelData", panelList);
+				Minecraft minecraft = Minecraft.getInstance();
+				File directory = new File(minecraft.gameDirectory, AdvancedOverlay.MOD_ID);
+				directory.mkdirs();
+				File file = new File(directory, "panel.bcfg");
+				BinaryConfig.writeBinaryConfigFile(object, file);
+			} catch(Throwable Errors) {
+				Errors.printStackTrace();
+			}
+		});
+
+		thread.setName(AdvancedOverlay.MOD_NAME + " Config Saving Thread");
+		thread.setPriority(6);
+		thread.start();
 	}
 }

@@ -1,9 +1,11 @@
 package com.khopan.mods.advancedoverlay.client.screen;
 
+import com.khopan.mods.advancedoverlay.AdvancedOverlay;
 import com.khopan.mods.advancedoverlay.Text;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.layouts.FrameLayout;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.GridLayout.RowHelper;
@@ -23,6 +25,7 @@ public class ConfigScreen extends ReturnableScreen {
 		layout.defaultCellSetting().paddingHorizontal(5).paddingBottom(4).alignHorizontallyCenter();
 		RowHelper row = layout.createRowHelper(2);
 		row.addChild(this.setScreenButton(PanelSettingsScreen.TITLE, new PanelSettingsScreen(this)));
+		row.addChild(Button.builder(Component.literal("Save Panel"), button -> AdvancedOverlay.savePanel()).build()); // TEMPORARILY
 		row.addChild(this.doneButton(), 2, layout.newCellSettings().paddingTop(6));
 		layout.arrangeElements();
 		FrameLayout.alignInRectangle(layout, 0, 0, this.width, this.height, 0.5f, 0.5f);

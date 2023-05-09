@@ -1,5 +1,7 @@
 package com.khopan.mods.advancedoverlay.client.screen;
 
+import com.khopan.mods.advancedoverlay.AdvancedOverlay;
+
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
@@ -23,7 +25,10 @@ public abstract class ReturnableScreen extends Screen {
 	}
 
 	public Button doneButton() {
-		return Button.builder(CommonComponents.GUI_DONE, button -> this.returnToLastScreen()).width(200).build();
+		return Button.builder(CommonComponents.GUI_DONE, button -> {
+			AdvancedOverlay.savePanel();
+			this.returnToLastScreen();
+		}).width(200).build();
 	}
 
 	public Button setScreenButton(Component title, Screen screen) {

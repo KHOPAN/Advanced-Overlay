@@ -21,4 +21,8 @@ public enum Latch {
 	public boolean toBoolean() {
 		return this.value;
 	}
+
+	public Latch fromBoolean(boolean state) {
+		return state ? Latch.ON : Latch.OFF;
+	}
 }

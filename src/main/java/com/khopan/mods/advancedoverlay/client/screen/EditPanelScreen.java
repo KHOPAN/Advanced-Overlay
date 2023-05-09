@@ -3,6 +3,8 @@ package com.khopan.mods.advancedoverlay.client.screen;
 import com.khopan.mods.advancedoverlay.AdvancedOverlay;
 import com.khopan.mods.advancedoverlay.PanelHolder;
 import com.khopan.mods.advancedoverlay.Text;
+import com.khopan.mods.advancedoverlay.overlay.Latch;
+import com.khopan.mods.advancedoverlay.overlay.OriginLocation;
 import com.khopan.mods.advancedoverlay.overlay.OverlayLocation;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -20,13 +22,19 @@ import net.minecraft.network.chat.MutableComponent;
 
 public class EditPanelScreen extends ReturnableScreen {
 	public static final Component PANEL_NAME = Text.config("editPanel.panelName");
+	public static final Component VISIBLE = Text.config("editPanel.visible");
 	public static final Component OVERLAY_LOCATION = Text.config("editPanel.overlayLocation");
 	public static final Component EDIT_CUSTOM_LOCATION = Text.config("editPanel.editCustomLocation");
+	public static final Component ORIGIN_LOCATION = Text.config("editPanel.originLocation");
+	public static final Component AUTO_IN_FRAME = Text.config("editPanel.autoInFrame");
 
 	private final int index;
 
+	private CycleButton<Latch> visibleButton;
 	private CycleButton<OverlayLocation> locationButton;
 	private Button editCustomLocationButton;
+	private CycleButton<OriginLocation> originButton;
+	private CycleButton<Latch> autoInFrameButton;
 
 	public EditPanelScreen(Screen screen, int index) {
 		super(EditPanelScreen.getTitle(index), screen);
@@ -46,6 +54,10 @@ public class EditPanelScreen extends ReturnableScreen {
 			holder.name = Component.literal(text);
 		});
 
+		this.visibleButton = CycleButton.builder(Latch :: getDisplayName).withValues(Latch.values()).withInitialValue(holder.visible).create(0, 0, 150, 20, EditPanelScreen.VISIBLE, (button, visible) -> {
+			holder.visible = visible;
+		});
+
 		this.locationButton = CycleButton.builder(OverlayLocation :: getDisplayName).withValues(OverlayLocation.values()).withInitialValue(holder.overlayLocation).create(0, 0, 150, 20, EditPanelScreen.OVERLAY_LOCATION, (button, location) -> {
 			holder.overlayLocation = location;
 			this.buttonActivation(location);
@@ -55,10 +67,21 @@ public class EditPanelScreen extends ReturnableScreen {
 
 		})/*.tooltip(Tooltip.create(null))*/.build();
 
+		this.originButton = CycleButton.builder(OriginLocation :: getDisplayName).withValues(OriginLocation.values()).withInitialValue(OriginLocation.DEFAULT).create(0, 0, 150, 20, EditPanelScreen.ORIGIN_LOCATION, (button, location) -> {
+			holder.originLocation = location;
+		});
+
+		this.autoInFrameButton = CycleButton.builder(Latch :: getDisplayName).withValues(Latch.values()).withInitialValue(Latch.OFF).create(0, 0, 150, 20, EditPanelScreen.AUTO_IN_FRAME, (button, autoInFrame) -> {
+			holder.autoInFrame = autoInFrame;
+		});
+
 		this.buttonActivation(this.locationButton.getValue());
 		row.addChild(box);
+		row.addChild(this.visibleButton);
 		row.addChild(this.locationButton);
 		row.addChild(this.editCustomLocationButton);
+		row.addChild(this.originButton);
+		row.addChild(this.autoInFrameButton);
 		row.addChild(this.doneButton(), 2, layout.newCellSettings().paddingTop(6));
 		layout.arrangeElements();
 		FrameLayout.alignInRectangle(layout, 0, 0, this.width, this.height, 0.5f, 0.5f);
@@ -68,8 +91,12 @@ public class EditPanelScreen extends ReturnableScreen {
 	private void buttonActivation(OverlayLocation location) {
 		if(OverlayLocation.CUSTOM.equals(location)) {
 			this.editCustomLocationButton.active = true;
+			this.originButton.active = true;
+			this.autoInFrameButton.active = true;
 		} else {
 			this.editCustomLocationButton.active = false;
+			this.originButton.active = false;
+			this.autoInFrameButton.active = false;
 		}
 	}
 

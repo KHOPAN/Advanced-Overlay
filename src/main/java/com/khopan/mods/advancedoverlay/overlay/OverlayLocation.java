@@ -65,6 +65,58 @@ public enum OverlayLocation {
 		return Text.config("editPanel.overlayLocation." + this.key);
 	}
 
+	public int getIndex() {
+		if(OverlayLocation.TOP_LEFT.equals(this)) {
+			return 0;
+		} else if(OverlayLocation.TOP_CENTER.equals(this)) {
+			return 1;
+		} else if(OverlayLocation.TOP_RIGHT.equals(this)) {
+			return 2;
+		} else if(OverlayLocation.CENTER_LEFT.equals(this)) {
+			return 3;
+		} else if(OverlayLocation.CENTER.equals(this)) {
+			return 4;
+		} else if(OverlayLocation.CENTER_RIGHT.equals(this)) {
+			return 5;
+		} else if(OverlayLocation.BOTTOM_LEFT.equals(this)) {
+			return 6;
+		} else if(OverlayLocation.BOTTOM_CENTER.equals(this)) {
+			return 7;
+		} else if(OverlayLocation.BOTTOM_RIGHT.equals(this)) {
+			return 8;
+		} else if(OverlayLocation.CUSTOM.equals(this)) {
+			return 9;
+		} else {
+			return -1;
+		}
+	}
+
+	public static OverlayLocation fromIndex(int index) {
+		if(index == 0) {
+			return OverlayLocation.TOP_LEFT;
+		} else if(index == 1) {
+			return OverlayLocation.TOP_CENTER;
+		} else if(index == 2) {
+			return OverlayLocation.TOP_RIGHT;
+		} else if(index == 3) {
+			return OverlayLocation.CENTER_LEFT;
+		} else if(index == 4) {
+			return OverlayLocation.CENTER;
+		} else if(index == 5) {
+			return OverlayLocation.CENTER_RIGHT;
+		} else if(index == 6) {
+			return OverlayLocation.BOTTOM_LEFT;
+		} else if(index == 7) {
+			return OverlayLocation.BOTTOM_CENTER;
+		} else if(index == 8) {
+			return OverlayLocation.BOTTOM_RIGHT;
+		} else if(index == 9) {
+			return OverlayLocation.CUSTOM;
+		} else {
+			throw new IllegalArgumentException("Invalid index, you probably have a broken type stored");
+		}
+	}
+
 	private interface LocationCalculator {
 		public int calculate(int width, int size, int margin);
 	}
