@@ -1,30 +1,39 @@
 {
 	"schemaVersion": 1,
-	"id": "advancedoverlay",
-	"version": "1.0.0",
-	"name": "Advanced Overlay",
-	"description": "Add a highly customizable HUD overlays.",
-	"authors": ["KHOPAN"],
+	"id": "modid",
+	"version": "${version}",
+	"name": "Example Mod",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+
 	"contact": {
-		"sources": "https://github.com/KHOPAN/Advanced-Overlay"
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 
-	"license": "MIT License",
-	"icon": "assets/advancedoverlay/icon.png",
-	"environment": "client",
+	"license": "CC0-1.0",
+	"icon": "assets/modid/icon.png",
+	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.khopan.mods.advancedoverlay.AdvancedOverlay"
+			"net.fabricmc.example.ExampleMod"
 		]
 	},
 
 	"mixins": [
-		"advancedoverlay.mixins.json"
+		"modid.mixins.json"
 	],
 
 	"depends": {
-		"fabricloader": ">=0.14.17",
+		"fabricloader": ">=0.14.19",
+		"fabric-api": "*",
 		"minecraft": "~1.19.4",
 		"java": ">=17"
+	},
+	
+	"suggests": {
+		"another-mod": "*"
 	}
 }
