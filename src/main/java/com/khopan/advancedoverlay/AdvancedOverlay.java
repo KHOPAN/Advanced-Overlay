@@ -15,14 +15,4 @@ public class AdvancedOverlay implements ClientModInitializer {
 	public void onInitializeClient() {
 		AdvancedOverlay.LOGGER.info("Advanced Overlay Initialization");
 	}
-
-	/*@Mixin(PauseScreen.class)
-	public abstract class PauseScreenMixin {
-		@Inject(method="createPauseMenu()V", at=@At(value="INVOKE", target="Lnet/minecraft/client/Minecraft;isLocalServer()Z", shift=Shift.BY, by=-1), locals=LocalCapture.CAPTURE_FAILSOFT)
-		public void onCreatePauseMenu(CallbackInfo info, GridLayout gridLayout, RowHelper rowHelper) {
-			rowHelper.addChild(Button.builder(ConfigScreen.TITLE, button -> {
-				Minecraft.getInstance().setScreen(new ConfigScreen((PauseScreen) (Object) this));
-			}).width(204).build(), 2);
-		}
-	}*/
 }

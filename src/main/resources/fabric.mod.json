@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "advancedoverlay",
-	"version": "${mod_version}",
+	"version": "1.0.0",
 	"name": "Advanced Overlay",
 	"authors": ["KHOPAN"],
 	"contact": {
@@ -11,14 +11,13 @@
 	"license": "MIT License",
 	"environment": "client",
 	"entrypoints": {
-		"main": [
+		"client": [
 			"com.khopan.advancedoverlay.AdvancedOverlay"
 		]
 	},
 
 	"depends": {
 		"fabricloader": ">=0.14.19",
-		"fabric-api": "*",
 		"minecraft": "~1.19.4",
 		"java": ">=17"
 	},
