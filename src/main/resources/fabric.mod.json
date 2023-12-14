@@ -1,30 +1,20 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
-	"version": "${version}",
-	"name": "Example Mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
-	"authors": [
-		"Me!"
-	],
-
+	"id": "advancedoverlay",
+	"version": "${mod_version}",
+	"name": "Advanced Overlay",
+	"authors": ["KHOPAN"],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/KHOPAN/Advanced-Overlay"
 	},
 
-	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
-	"environment": "*",
+	"license": "MIT License",
+	"environment": "client",
 	"entrypoints": {
 		"main": [
-			"net.fabricmc.example.ExampleMod"
+			"com.khopan.advancedoverlay.AdvancedOverlay"
 		]
 	},
-
-	"mixins": [
-		"modid.mixins.json"
-	],
 
 	"depends": {
 		"fabricloader": ">=0.14.19",
@@ -32,7 +22,7 @@
 		"minecraft": "~1.19.4",
 		"java": ">=17"
 	},
-	
+
 	"suggests": {
 		"another-mod": "*"
 	}
