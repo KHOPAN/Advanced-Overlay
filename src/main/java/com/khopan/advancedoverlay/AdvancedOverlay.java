@@ -67,7 +67,7 @@ public class AdvancedOverlay implements ClientModInitializer {
 			}
 		}
 
-		AdvancedOverlay.LOGGER.info("{} out of {} Extension{} were loaded correctly {}", success, size, size == 1 ? "" : "s", String.format("(%.2d%%)", ((double) success) / ((double) size)));
+		AdvancedOverlay.LOGGER.info("{} out of {} Extension{} were loaded correctly {}", success, size, size == 1 ? "" : "s", String.format("(%.2f%%)", ((double) success) / ((double) size)));
 		AdvancedOverlay.LOGGER.info("Finished initializing {}", AdvancedOverlay.MOD_NAME);
 	}
 }
