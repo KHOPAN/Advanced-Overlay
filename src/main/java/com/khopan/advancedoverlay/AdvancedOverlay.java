@@ -17,6 +17,7 @@ public class AdvancedOverlay implements ClientModInitializer {
 	public static final String MOD_IDENTIFIER = "advancedoverlay";
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(AdvancedOverlay.MOD_NAME);
+	public static final List<Channel> CHANNEL_LIST = new ArrayList<>();
 
 	@Override
 	public void onInitializeClient() {

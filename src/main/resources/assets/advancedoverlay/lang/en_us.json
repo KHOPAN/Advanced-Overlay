@@ -1,3 +1,7 @@
 {
-    "config.advancedoverlay.title": "Advanced Overlay Config"
+    "config.advancedoverlay.title": "Advanced Overlay Config",
+    "config.advancedoverlay.channel.list.title": "Channel List",
+    "config.advancedoverlay.channel.edit.title": "Edit Channel",
+    "config.advancedoverlay.channel.new.title": "New Channel",
+    "config.advancedoverlay.channel.delete.title": "Delete Channel"
 }
