@@ -35,9 +35,10 @@ public class ChannelListScreen extends Screen {
 	}
 
 	@Override
-	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
-		this.list.render(poseStack, mouseX, mouseY, partialTick);
-		super.render(poseStack, mouseX, mouseY, partialTick);
+	public void render(PoseStack stack, int mouseX, int mouseY, float partialTick) {
+		this.list.render(stack, mouseX, mouseY, partialTick);
+		this.font.drawShadow(stack, this.title, (((float) this.width) - ((float) this.font.width(this.title))) * 0.5f, (((float) this.list.getRectangle().top()) - ((float) this.font.lineHeight)) * 0.5f, 0xFFFFFF);
+		super.render(stack, mouseX, mouseY, partialTick);
 	}
 
 	public Minecraft minecraft() {

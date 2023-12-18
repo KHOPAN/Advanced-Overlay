@@ -13,7 +13,7 @@ public class ChannelList extends ObjectSelectionList<ChannelEntry> {
 	final ChannelListScreen screen;
 
 	public ChannelList(ChannelListScreen screen) {
-		super(screen.minecraft(), screen.width, screen.height, 48, screen.height - 64, 20);
+		super(screen.minecraft(), screen.width, screen.height, 32, screen.height - 64, 20);
 		this.screen = screen;
 
 		for(Channel channel : AdvancedOverlay.CHANNEL_LIST) {

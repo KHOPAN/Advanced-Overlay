@@ -32,7 +32,7 @@ public class ChannelEntry extends ObjectSelectionList.Entry<ChannelEntry> {
 	@Override
 	public void render(PoseStack stack, int index, int top, int left, int width, int height, int mouseX, int mouseY, boolean mouseOver, float partialTick) {
 		Font font = this.list.screen.font();
-		font.drawShadow(stack, this.name, (int) Math.round((((double) this.list.screen.width) - ((double) font.width(this.name))) * 0.5d), (int) Math.round(((double) top) + (((double) height) - ((double) font.lineHeight)) * 0.5d), 0xFFFFFF);
+		font.drawShadow(stack, this.name, (((float) this.list.screen.width) - ((float) font.width(this.name))) * 0.5f, ((float) top) + (((float) height) - ((float) font.lineHeight)) * 0.5f, 0xFFFFFF);
 	}
 
 	@Override
