@@ -1,6 +1,7 @@
 package com.khopan.advancedoverlay.screen.channellist;
 
 import com.khopan.advancedoverlay.Text;
+import com.khopan.advancedoverlay.screen.NewEditChannelScreen;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.Minecraft;
@@ -29,7 +30,7 @@ public class ChannelListScreen extends Screen {
 		int bottom = this.height - 28;
 		int right = (int) Math.round(halfWidth + 4.0d);
 		this.addRenderableWidget(Button.builder(Text.EDIT_CHANNEL, button -> {}).bounds(left, top, 150, 20).build());
-		this.addRenderableWidget(Button.builder(Text.NEW_CHANNEL, button -> {}).bounds(right, top, 150, 20).build());
+		this.addRenderableWidget(Button.builder(Text.NEW_CHANNEL, button -> this.minecraft.setScreen(new NewEditChannelScreen(this, false))).bounds(right, top, 150, 20).build());
 		this.addRenderableWidget(Button.builder(Text.DELETE_CHANNEL, button -> {}).bounds(left, bottom, 150, 20).build());
 		this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, button -> this.minecraft.setScreen(this.lastScreen)).bounds(right, bottom, 150, 20).build());
 	}
