@@ -24,7 +24,10 @@ public class ChannelList extends ObjectSelectionList<ChannelEntry> {
 	public Channel addNewChannel() {
 		Channel channel = new Channel(Text.NEW_CHANNEL.getString());
 		AdvancedOverlay.CHANNEL_LIST.add(channel);
-		this.addEntry(new ChannelEntry(this, channel));
+		ChannelEntry entry = new ChannelEntry(this, channel);
+		this.addEntry(entry);
+		this.setSelected(entry);
+		this.centerScrollOn(entry);
 		return channel;
 	}
 

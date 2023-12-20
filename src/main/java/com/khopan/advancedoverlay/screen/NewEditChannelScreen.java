@@ -3,7 +3,6 @@ package com.khopan.advancedoverlay.screen;
 import com.khopan.advancedoverlay.Channel;
 import com.khopan.advancedoverlay.Location;
 import com.khopan.advancedoverlay.Text;
-import com.khopan.advancedoverlay.screen.channellist.ChannelListScreen;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.gui.components.Button;
@@ -20,6 +19,8 @@ public class NewEditChannelScreen extends Screen {
 	private final Channel channel;
 
 	private GridLayout layout;
+	private EditBox channelNameBox;
+	private CycleButton<Location> locationButton;
 
 	public NewEditChannelScreen(Screen lastScreen, Channel channel, boolean edit) {
 		super(edit ? Text.EDIT_CHANNEL : Text.NEW_CHANNEL);
@@ -32,10 +33,15 @@ public class NewEditChannelScreen extends Screen {
 		this.layout = new GridLayout();
 		this.layout.defaultCellSetting().paddingHorizontal(5).paddingBottom(4).alignHorizontallyCenter();
 		RowHelper helper = this.layout.createRowHelper(2);
-		EditBox editBox = new EditBox(this.font, 0, 0, 150, 20, Text.CHANNEL_NAME);
-		editBox.setHint(Text.CHANNEL_NAME);
-		helper.addChild(editBox);
-		helper.addChild(CycleButton.<Location>builder(location -> location.getText()).withValues(Location.values()).withInitialValue(Location.CENTER_RIGHT).create(0, 0, 150, 20, Text.LOCATION));
+		this.channelNameBox = new EditBox(this.font, 0, 0, 150, 20, Text.CHANNEL_NAME);
+		this.channelNameBox.setHint(Text.CHANNEL_NAME);
+		helper.addChild(this.channelNameBox);
+		this.locationButton = CycleButton.<Location>builder(location -> location.getText())
+				.withValues(Location.values())
+				.withInitialValue(Location.CENTER_RIGHT)
+				.create(0, 0, 150, 20, Text.LOCATION);
+
+		helper.addChild(this.locationButton);
 		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
 		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
 		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
@@ -47,11 +53,10 @@ public class NewEditChannelScreen extends Screen {
 	}
 
 	private void done(Button button) {
+		String name = this.channelNameBox.getValue();
+		this.channel.setChannelName(name == null || name.isEmpty() ? Text.NEW_CHANNEL.getString() : name);
+		//System.out.println(this.locationButton.getValue());
 		this.minecraft.setScreen(this.lastScreen);
-
-		if(this.lastScreen instanceof ChannelListScreen screen) {
-			screen.refreshList();
-		}
 	}
 
 	@Override

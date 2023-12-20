@@ -22,7 +22,12 @@ public class ChannelListScreen extends Screen {
 
 	@Override
 	protected void init() {
-		this.list = new ChannelList(this);
+		if(this.list == null) {
+			this.list = new ChannelList(this);
+		} else {
+			this.list.refresh();
+		}
+
 		this.addWidget(this.list);
 		double halfWidth = this.width * 0.5d;
 		int top = this.height - 52;
@@ -48,9 +53,5 @@ public class ChannelListScreen extends Screen {
 
 	public Font font() {
 		return this.font;
-	}
-
-	public void refreshList() {
-		this.list.refresh();
 	}
 }
