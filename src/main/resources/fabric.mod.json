@@ -13,6 +13,10 @@
 	"entrypoints": {
 		"client": [
 			"com.khopan.advancedoverlay.AdvancedOverlay"
+		],
+
+		"advancedoverlay": [
+			"com.khopan.advancedoverlay.builtin.CoreExtension"
 		]
 	},
 
