@@ -1,6 +1,6 @@
 package com.khopan.advancedoverlay.api;
 
-public interface IAdvancedOverlayExtension {
+public interface IExtension {
 	void initialize();
 	String getName();
 }

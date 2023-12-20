@@ -6,7 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.khopan.advancedoverlay.api.IAdvancedOverlayExtension;
+import com.khopan.advancedoverlay.api.IExtension;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -23,12 +23,12 @@ public class AdvancedOverlay implements ClientModInitializer {
 	public void onInitializeClient() {
 		AdvancedOverlay.LOGGER.info("Advanced Overlay Initialization");
 		AdvancedOverlay.LOGGER.info("Loading Extension");
-		List<EntrypointContainer<IAdvancedOverlayExtension>> list = FabricLoader.getInstance().getEntrypointContainers(AdvancedOverlay.MOD_IDENTIFIER, IAdvancedOverlayExtension.class);
-		List<IAdvancedOverlayExtension> extensionList = new ArrayList<>();
+		List<EntrypointContainer<IExtension>> list = FabricLoader.getInstance().getEntrypointContainers(AdvancedOverlay.MOD_IDENTIFIER, IExtension.class);
+		List<IExtension> extensionList = new ArrayList<>();
 
 		for(int i = 0; i < list.size(); i++) {
-			EntrypointContainer<IAdvancedOverlayExtension> container = list.get(i);
-			IAdvancedOverlayExtension extension;
+			EntrypointContainer<IExtension> container = list.get(i);
+			IExtension extension;
 
 			try {
 				extension = container.getEntrypoint();
@@ -51,7 +51,7 @@ public class AdvancedOverlay implements ClientModInitializer {
 		int success = 0;
 
 		for(int i = 0; i < size; i++) {
-			IAdvancedOverlayExtension extension = extensionList.get(i);
+			IExtension extension = extensionList.get(i);
 			String name = extension.getName();
 
 			if(name == null) {
