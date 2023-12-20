@@ -11,6 +11,7 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.layouts.FrameLayout;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.GridLayout.RowHelper;
+import net.minecraft.client.gui.layouts.SpacerElement;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 
@@ -46,7 +47,9 @@ public class NewEditChannelScreen extends Screen {
 		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
 		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
 		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
-		helper.addChild(Button.builder(CommonComponents.GUI_DONE, this :: done).build(), 2);
+		helper.addChild(SpacerElement.height(20), 2);
+		helper.addChild(Button.builder(CommonComponents.GUI_CANCEL, button -> this.minecraft.setScreen(this.lastScreen)).build());
+		helper.addChild(Button.builder(CommonComponents.GUI_DONE, this :: done).build());
 		this.layout.arrangeElements();
 		FrameLayout.alignInRectangle(this.layout, 0, 0, this.width, this.height, 0.5f, 0.5f);
 		this.layout.visitWidgets(this :: addRenderableWidget);
