@@ -44,7 +44,7 @@ public class AdvancedOverlay implements ClientModInitializer {
 		if(size == 0) {
 			AdvancedOverlay.LOGGER.info("No working Extension found");
 		} else {
-			AdvancedOverlay.LOGGER.info("{} Working Extension{} found", size, size == 1 ? "" : "s");
+			AdvancedOverlay.LOGGER.info("{} working Extension{} found", size, size == 1 ? "" : "s");
 		}
 
 		AdvancedOverlay.LOGGER.info("Initializing Extension");
