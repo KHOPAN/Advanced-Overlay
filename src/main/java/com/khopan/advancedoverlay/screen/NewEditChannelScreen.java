@@ -20,6 +20,7 @@ import net.minecraft.network.chat.CommonComponents;
 public class NewEditChannelScreen extends Screen {
 	private final Screen lastScreen;
 	private final Channel channel;
+	private final boolean edit;
 	private final Consumer<Channel> onDone;
 
 	private GridLayout layout;
@@ -30,6 +31,7 @@ public class NewEditChannelScreen extends Screen {
 		super(edit ? Text.EDIT_CHANNEL : Text.NEW_CHANNEL);
 		this.lastScreen = lastScreen;
 		this.channel = channel;
+		this.edit = edit;
 		this.onDone = onDone;
 	}
 
@@ -40,6 +42,11 @@ public class NewEditChannelScreen extends Screen {
 		RowHelper helper = this.layout.createRowHelper(2);
 		this.channelNameBox = new EditBox(this.font, 0, 0, 150, 20, Text.CHANNEL_NAME);
 		this.channelNameBox.setHint(Text.CHANNEL_NAME);
+
+		if(this.edit) {
+			this.channelNameBox.setValue(this.channel.getChannelName());
+		}
+
 		helper.addChild(this.channelNameBox);
 		this.locationButton = CycleButton.<Location>builder(location -> location.getText())
 				.withValues(Location.values())
@@ -62,7 +69,6 @@ public class NewEditChannelScreen extends Screen {
 	private void done(Button button) {
 		String name = this.channelNameBox.getValue();
 		this.channel.setChannelName(name == null || name.isEmpty() ? Text.NEW_CHANNEL.getString() : name);
-		//System.out.println(this.locationButton.getValue());
 		this.minecraft.setScreen(this.lastScreen);
 
 		if(this.onDone != null) {

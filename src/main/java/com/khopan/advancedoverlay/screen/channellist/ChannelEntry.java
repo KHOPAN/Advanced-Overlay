@@ -44,4 +44,8 @@ public class ChannelEntry extends ObjectSelectionList.Entry<ChannelEntry> {
 
 		return false;
 	}
+
+	public Channel getChannel() {
+		return this.channel;
+	}
 }

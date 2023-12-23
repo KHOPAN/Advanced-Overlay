@@ -20,6 +20,22 @@ public class ChannelList extends ObjectSelectionList<ChannelEntry> {
 		this.refresh();
 	}
 
+	public void deleteSelected() {
+		ChannelEntry entry = this.getSelected();
+
+		if(entry == null) {
+			return;
+		}
+
+		Channel channel = entry.getChannel();
+
+		if(!AdvancedOverlay.CHANNEL_LIST.remove(channel)) {
+			return;
+		}
+
+		this.removeEntry(entry);
+	}
+
 	public void addChannel(Channel channel) {
 		AdvancedOverlay.CHANNEL_LIST.add(channel);
 		ChannelEntry entry = new ChannelEntry(this, channel);

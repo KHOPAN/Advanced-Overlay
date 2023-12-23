@@ -35,10 +35,20 @@ public class ChannelListScreen extends Screen {
 		int left = (int) Math.round(halfWidth - 154.0d);
 		int bottom = this.height - 28;
 		int right = (int) Math.round(halfWidth + 4.0d);
-		this.addRenderableWidget(Button.builder(Text.EDIT_CHANNEL, button -> {}).bounds(left, top, 150, 20).build());
+		this.addRenderableWidget(Button.builder(Text.EDIT_CHANNEL, this :: edit).bounds(left, top, 150, 20).build());
 		this.addRenderableWidget(Button.builder(Text.NEW_CHANNEL, button -> this.minecraft.setScreen(new NewEditChannelScreen(this, new Channel(Text.NEW_CHANNEL.getString()), false, channel -> this.list.addChannel(channel)))).bounds(right, top, 150, 20).build());
-		this.addRenderableWidget(Button.builder(Text.DELETE_CHANNEL, button -> {}).bounds(left, bottom, 150, 20).build());
+		this.addRenderableWidget(Button.builder(Text.DELETE_CHANNEL, button -> this.list.deleteSelected()).bounds(left, bottom, 150, 20).build());
 		this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, button -> this.minecraft.setScreen(this.lastScreen)).bounds(right, bottom, 150, 20).build());
+	}
+
+	private void edit(Button button) {
+		ChannelEntry entry = this.list.getSelected();
+
+		if(entry == null) {
+			return;
+		}
+
+		this.minecraft.setScreen(new NewEditChannelScreen(this, entry.getChannel(), true, channel -> this.list.refresh()));
 	}
 
 	@Override
