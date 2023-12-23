@@ -1,7 +1,8 @@
 package com.khopan.advancedoverlay.screen.channellist;
 
-import com.khopan.advancedoverlay.Channel;
 import com.khopan.advancedoverlay.Text;
+import com.khopan.advancedoverlay.channel.Channel;
+import com.khopan.advancedoverlay.channel.Location;
 import com.khopan.advancedoverlay.screen.NewEditChannelScreen;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -36,7 +37,7 @@ public class ChannelListScreen extends Screen {
 		int bottom = this.height - 28;
 		int right = (int) Math.round(halfWidth + 4.0d);
 		this.addRenderableWidget(Button.builder(Text.EDIT_CHANNEL, this :: edit).bounds(left, top, 150, 20).build());
-		this.addRenderableWidget(Button.builder(Text.NEW_CHANNEL, button -> this.minecraft.setScreen(new NewEditChannelScreen(this, new Channel(Text.NEW_CHANNEL.getString()), false, channel -> this.list.addChannel(channel)))).bounds(right, top, 150, 20).build());
+		this.addRenderableWidget(Button.builder(Text.NEW_CHANNEL, button -> this.minecraft.setScreen(new NewEditChannelScreen(this, new Channel(Text.NEW_CHANNEL.getString(), Location.DEFAULT), false, channel -> this.list.addChannel(channel)))).bounds(right, top, 150, 20).build());
 		this.addRenderableWidget(Button.builder(Text.DELETE_CHANNEL, button -> this.list.deleteSelected()).bounds(left, bottom, 150, 20).build());
 		this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, button -> this.minecraft.setScreen(this.lastScreen)).bounds(right, bottom, 150, 20).build());
 	}

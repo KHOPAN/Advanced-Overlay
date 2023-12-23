@@ -2,11 +2,12 @@ package com.khopan.advancedoverlay.screen;
 
 import java.util.function.Consumer;
 
-import com.khopan.advancedoverlay.Channel;
-import com.khopan.advancedoverlay.Location;
 import com.khopan.advancedoverlay.Text;
+import com.khopan.advancedoverlay.channel.Channel;
+import com.khopan.advancedoverlay.channel.Location;
 import com.mojang.blaze3d.vertex.PoseStack;
 
+import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.EditBox;
@@ -50,11 +51,11 @@ public class NewEditChannelScreen extends Screen {
 		helper.addChild(this.channelNameBox);
 		this.locationButton = CycleButton.<Location>builder(location -> location.getText())
 				.withValues(Location.values())
-				.withInitialValue(Location.CENTER_RIGHT)
+				.withInitialValue(this.channel.getLocation())
 				.create(0, 0, 150, 20, Text.LOCATION);
 
 		helper.addChild(this.locationButton);
-		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
+		helper.addChild(new VerticalSpacingButton());
 		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
 		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
 		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
@@ -81,5 +82,22 @@ public class NewEditChannelScreen extends Screen {
 		this.renderDirtBackground(stack);
 		super.render(stack, mouseX, mouseY, partialTick);
 		this.font.drawShadow(stack, this.title, (((float) this.width) - ((float) this.font.width(this.title))) * 0.5f, (((float) this.layout.getRectangle().top()) - ((float) this.font.lineHeight)) * 0.5f, 0xFFFFFF);
+	}
+
+	private class VerticalSpacingButton extends AbstractSliderButton {
+		public VerticalSpacingButton() {
+			super(0, 0, 150, 20, Text.VERTICAL_SPACING, 0.0d);
+			this.updateMessage();
+		}
+
+		@Override
+		protected void updateMessage() {
+			this.setMessage(Text.verticalSpacing(Integer.toString((int) Math.round(this.value * 100.0d))));
+		}
+
+		@Override
+		protected void applyValue() {
+
+		}
 	}
 }

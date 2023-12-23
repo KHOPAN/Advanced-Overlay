@@ -3,7 +3,7 @@ package com.khopan.advancedoverlay.screen.channellist;
 import java.util.List;
 
 import com.khopan.advancedoverlay.AdvancedOverlay;
-import com.khopan.advancedoverlay.Channel;
+import com.khopan.advancedoverlay.channel.Channel;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.fabricmc.api.EnvType;

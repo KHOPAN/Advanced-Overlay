@@ -19,5 +19,14 @@ public interface Text {
 	public static final Component BOTTOM_LEFT = Component.translatableWithFallback("config.advancedoverlay.channel.location.bottomleft", "Bottom Left");
 	public static final Component BOTTOM_CENTER = Component.translatableWithFallback("config.advancedoverlay.channel.location.bottomcenter", "Bottom Center");
 	public static final Component BOTTOM_RIGHT = Component.translatableWithFallback("config.advancedoverlay.channel.location.bottomright", "Bottom Right");
-	public static final Component LOCATION_CUSTOM = Component.translatableWithFallback("config.advancedoverlay.channel.location.custom", "Custom");
+	public static final Component VERTICAL_SPACING = Component.translatableWithFallback("config.advancedoverlay.channel.spacing.vertical", "Vertical Spacing");
+	public static final Component HORIZONTAL_SPACING = Component.translatableWithFallback("config.advancedoverlay.channel.spacing.horizontal", "Horizontal Spacing");
+
+	public static Component verticalSpacing(String verticalSpacing) {
+		return Component.translatableWithFallback("config.advancedoverlay.channel.spacing.vertical.value", "Vertical Spacing: %s%%", verticalSpacing);
+	}
+
+	public static Component horizontalSpacing(String horizontalSpacing) {
+		return Component.translatableWithFallback("config.advancedoverlay.channel.spacing.horizontal.value", "Horizontal Spacing: %s%%", horizontalSpacing);
+	}
 }

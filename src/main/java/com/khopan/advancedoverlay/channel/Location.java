@@ -1,4 +1,6 @@
-package com.khopan.advancedoverlay;
+package com.khopan.advancedoverlay.channel;
+
+import com.khopan.advancedoverlay.Text;
 
 import net.minecraft.network.chat.Component;
 
@@ -11,8 +13,9 @@ public enum Location {
 	CENTER_RIGHT(Text.CENTER_RIGHT),
 	BOTTOM_LEFT(Text.BOTTOM_LEFT),
 	BOTTOM_CENTER(Text.BOTTOM_CENTER),
-	BOTTOM_RIGHT(Text.BOTTOM_RIGHT),
-	CUSTOM(Text.LOCATION_CUSTOM);
+	BOTTOM_RIGHT(Text.BOTTOM_RIGHT);
+
+	public static final Location DEFAULT = Location.CENTER_RIGHT;
 
 	private final Component text;
 

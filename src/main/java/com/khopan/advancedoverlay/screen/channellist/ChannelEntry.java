@@ -2,7 +2,7 @@ package com.khopan.advancedoverlay.screen.channellist;
 
 import org.lwjgl.glfw.GLFW;
 
-import com.khopan.advancedoverlay.Channel;
+import com.khopan.advancedoverlay.channel.Channel;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.fabricmc.api.EnvType;
