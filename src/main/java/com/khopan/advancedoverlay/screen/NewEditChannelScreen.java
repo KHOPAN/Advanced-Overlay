@@ -1,5 +1,7 @@
 package com.khopan.advancedoverlay.screen;
 
+import java.util.function.Consumer;
+
 import com.khopan.advancedoverlay.Channel;
 import com.khopan.advancedoverlay.Location;
 import com.khopan.advancedoverlay.Text;
@@ -18,15 +20,17 @@ import net.minecraft.network.chat.CommonComponents;
 public class NewEditChannelScreen extends Screen {
 	private final Screen lastScreen;
 	private final Channel channel;
+	private final Consumer<Channel> onDone;
 
 	private GridLayout layout;
 	private EditBox channelNameBox;
 	private CycleButton<Location> locationButton;
 
-	public NewEditChannelScreen(Screen lastScreen, Channel channel, boolean edit) {
+	public NewEditChannelScreen(Screen lastScreen, Channel channel, boolean edit, Consumer<Channel> onDone) {
 		super(edit ? Text.EDIT_CHANNEL : Text.NEW_CHANNEL);
 		this.lastScreen = lastScreen;
 		this.channel = channel;
+		this.onDone = onDone;
 	}
 
 	@Override
@@ -60,6 +64,10 @@ public class NewEditChannelScreen extends Screen {
 		this.channel.setChannelName(name == null || name.isEmpty() ? Text.NEW_CHANNEL.getString() : name);
 		//System.out.println(this.locationButton.getValue());
 		this.minecraft.setScreen(this.lastScreen);
+
+		if(this.onDone != null) {
+			this.onDone.accept(this.channel);
+		}
 	}
 
 	@Override

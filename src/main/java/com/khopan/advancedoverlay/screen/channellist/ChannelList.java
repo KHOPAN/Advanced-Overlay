@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.khopan.advancedoverlay.AdvancedOverlay;
 import com.khopan.advancedoverlay.Channel;
-import com.khopan.advancedoverlay.Text;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.fabricmc.api.EnvType;
@@ -21,14 +20,12 @@ public class ChannelList extends ObjectSelectionList<ChannelEntry> {
 		this.refresh();
 	}
 
-	public Channel addNewChannel() {
-		Channel channel = new Channel(Text.NEW_CHANNEL.getString());
+	public void addChannel(Channel channel) {
 		AdvancedOverlay.CHANNEL_LIST.add(channel);
 		ChannelEntry entry = new ChannelEntry(this, channel);
 		this.addEntry(entry);
 		this.setSelected(entry);
 		this.centerScrollOn(entry);
-		return channel;
 	}
 
 	public void refresh() {
