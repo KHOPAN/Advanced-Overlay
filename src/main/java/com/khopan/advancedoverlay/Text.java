@@ -25,6 +25,7 @@ public interface Text {
 	public static final Component MODULE_SETTINGS = Component.translatableWithFallback("config.advancedoverlay.module.settings.title", "Module Settings");
 	public static final Component ADD_MODULE = Component.translatableWithFallback("config.advancedoverlay.module.add", "Add Module");
 	public static final Component REMOVE_MODULE = Component.translatableWithFallback("config.advancedoverlay.module.remove", "Remove Module");
+	public static final Component SELECT_MODULE = Component.translatableWithFallback("config.advancedoverlay.module.select", "Select a Module");
 
 	public static Component verticalSpacing(String verticalSpacing) {
 		return Component.translatableWithFallback("config.advancedoverlay.channel.spacing.vertical.value", "Vertical Spacing: %s%%", verticalSpacing);

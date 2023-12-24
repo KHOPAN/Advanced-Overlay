@@ -1,10 +1,13 @@
 package com.khopan.advancedoverlay.screen;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import com.khopan.advancedoverlay.Text;
 import com.khopan.advancedoverlay.data.Channel;
 import com.khopan.advancedoverlay.data.Location;
+import com.khopan.advancedoverlay.data.Module;
 import com.khopan.advancedoverlay.screen.modulelist.EditModuleScreen;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -25,6 +28,7 @@ public class NewEditChannelScreen extends Screen {
 	private final Channel channel;
 	private final boolean edit;
 	private final Consumer<Channel> onDone;
+	private final List<Module> moduleList;
 
 	private GridLayout layout;
 	private EditBox channelNameBox;
@@ -41,6 +45,9 @@ public class NewEditChannelScreen extends Screen {
 		this.onDone = onDone;
 		this.verticalSpacing = this.channel.getVerticalSpacing();
 		this.horizontalSpacing = this.channel.getHorizontalSpacing();
+		this.moduleList = new ArrayList<>();
+		List<Module> moduleList = this.channel.getModuleList();
+		this.moduleList.addAll(moduleList);
 	}
 
 	@Override
@@ -64,7 +71,7 @@ public class NewEditChannelScreen extends Screen {
 		helper.addChild(this.locationButton);
 		helper.addChild(new SpacingSlider(true));
 		helper.addChild(new SpacingSlider(false));
-		helper.addChild(Button.builder(Text.EDIT_MODULE, button -> this.minecraft.setScreen(new EditModuleScreen(this))).build(), 2);
+		helper.addChild(Button.builder(Text.EDIT_MODULE, button -> this.minecraft.setScreen(new EditModuleScreen(this, this.moduleList))).build(), 2);
 		helper.addChild(SpacerElement.height(20), 2);
 		helper.addChild(Button.builder(CommonComponents.GUI_CANCEL, button -> this.minecraft.setScreen(this.lastScreen)).build());
 		helper.addChild(Button.builder(CommonComponents.GUI_DONE, this :: done).build());
@@ -79,6 +86,9 @@ public class NewEditChannelScreen extends Screen {
 		this.channel.setLocation(this.locationButton.getValue());
 		this.channel.setVerticalSpacing(this.verticalSpacing);
 		this.channel.setHorizontalSpacing(this.horizontalSpacing);
+		List<Module> moduleList = this.channel.getModuleList();
+		moduleList.clear();
+		moduleList.addAll(this.moduleList);
 		this.minecraft.setScreen(this.lastScreen);
 
 		if(this.onDone != null) {
