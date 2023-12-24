@@ -1,13 +1,17 @@
 package com.khopan.advancedoverlay;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.khopan.advancedoverlay.annotation.Name;
 import com.khopan.advancedoverlay.api.IExtension;
+import com.khopan.advancedoverlay.api.IModule;
 import com.khopan.advancedoverlay.data.Channel;
+import com.khopan.advancedoverlay.data.Module;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -19,6 +23,7 @@ public class AdvancedOverlay implements ClientModInitializer {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(AdvancedOverlay.MOD_NAME);
 	public static final List<Channel> CHANNEL_LIST = new ArrayList<>();
+	public static final List<Module> MODULE_LIST = new ArrayList<>();
 
 	@Override
 	public void onInitializeClient() {
@@ -43,7 +48,7 @@ public class AdvancedOverlay implements ClientModInitializer {
 		int size = extensionList.size();
 
 		if(size == 0) {
-			AdvancedOverlay.LOGGER.info("No working Extension found");
+			AdvancedOverlay.LOGGER.warn("No working Extension found");
 		} else {
 			AdvancedOverlay.LOGGER.info("{} working Extension{} found", size, size == 1 ? "" : "s");
 		}
@@ -53,9 +58,18 @@ public class AdvancedOverlay implements ClientModInitializer {
 
 		for(int i = 0; i < size; i++) {
 			IExtension extension = extensionList.get(i);
-			String name = extension.getName();
+			Class<?> extensionClass = extension.getClass();
+			Name nameAnnotation = extensionClass.getAnnotation(Name.class);
 
-			if(name == null) {
+			if(nameAnnotation == null) {
+				AdvancedOverlay.LOGGER.error("Extension class '{}' is missing required @Name annotation", extensionClass.getName());
+				continue;
+			}
+
+			String name = nameAnnotation.value();
+
+			if(name == null || name.isEmpty()) {
+				AdvancedOverlay.LOGGER.error("Extension class '{}' has an empty or null @Name", extensionClass.getName());
 				continue;
 			}
 
@@ -65,11 +79,57 @@ public class AdvancedOverlay implements ClientModInitializer {
 				extension.initialize();
 				success++;
 			} catch(Throwable Errors) {
-				AdvancedOverlay.LOGGER.info("'{}' failed to initialize. {}", name, Errors.toString());
+				AdvancedOverlay.LOGGER.error("'{}' failed to initialize. {}", name, Errors.toString());
 			}
 		}
 
 		AdvancedOverlay.LOGGER.info("{} out of {} Extension{} were loaded correctly {}", success, size, size == 1 ? "" : "s", String.format("(%.2f%%)", ((double) success) / ((double) size)));
+		AdvancedOverlay.LOGGER.info("Registering Modules");
+
+		for(int i = 0; i < size; i++) {
+			IExtension extension = extensionList.get(i);
+			extension.registerModules(moduleClass -> {
+				if(moduleClass == null) {
+					return;
+				}
+
+				Name nameAnnotation = moduleClass.getAnnotation(Name.class);
+
+				if(nameAnnotation == null) {
+					AdvancedOverlay.LOGGER.error("Module class '{}' is missing required @Name annotation", moduleClass.getName());
+					return;
+				}
+
+				String name = nameAnnotation.value();
+
+				if(name == null || name.isEmpty()) {
+					AdvancedOverlay.LOGGER.error("Module class '{}' has an empty or null @Name", moduleClass.getName());
+					return;
+				}
+
+				Constructor<?> constructor;
+
+				try {
+					constructor = moduleClass.getConstructor();
+				} catch(Throwable ignored) {
+					AdvancedOverlay.LOGGER.error("No empty constructor found for Module class '{}'", moduleClass.getName());
+					return;
+				}
+
+				AdvancedOverlay.MODULE_LIST.add(new Module(name, () -> {
+					IModule module;
+
+					try {
+						module = (IModule) constructor.newInstance();
+					} catch(Throwable Errors) {
+						throw new RuntimeException("Error while constructing Module instance", Errors);
+					}
+
+					return module;
+				}));
+			});
+		}
+
 		AdvancedOverlay.LOGGER.info("Finished initializing {}", AdvancedOverlay.MOD_NAME);
 	}
 }

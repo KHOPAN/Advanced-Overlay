@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.khopan.advancedoverlay.api.IModule;
-import com.khopan.advancedoverlay.builtin.helloworld.HelloWorldModule;
+import com.khopan.advancedoverlay.builtin.HelloWorldModule;
 import com.khopan.advancedoverlay.renderer.OverlayRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 

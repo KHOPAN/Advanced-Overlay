@@ -1,22 +1,15 @@
 package com.khopan.advancedoverlay.builtin;
 
-import com.khopan.advancedoverlay.ModuleRegistry;
+import com.khopan.advancedoverlay.annotation.Name;
 import com.khopan.advancedoverlay.api.IExtension;
-import com.khopan.advancedoverlay.builtin.helloworld.HelloWorldModuleProvider;
+import com.khopan.advancedoverlay.api.ModuleRegistry;
 
+@Name(CoreExtension.EXTENSION_NAME)
 public class CoreExtension implements IExtension {
-	@Override
-	public void initialize() {
-
-	}
-
-	@Override
-	public String getName() {
-		return "Core";
-	}
+	public static final String EXTENSION_NAME = "Core";
 
 	@Override
 	public void registerModules(ModuleRegistry registry) {
-		registry.register(new HelloWorldModuleProvider());
+		registry.register(HelloWorldModule.class);
 	}
 }
