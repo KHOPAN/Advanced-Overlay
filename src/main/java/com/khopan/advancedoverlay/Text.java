@@ -21,6 +21,10 @@ public interface Text {
 	public static final Component BOTTOM_RIGHT = Component.translatableWithFallback("config.advancedoverlay.channel.location.bottomright", "Bottom Right");
 	public static final Component VERTICAL_SPACING = Component.translatableWithFallback("config.advancedoverlay.channel.spacing.vertical", "Vertical Spacing");
 	public static final Component HORIZONTAL_SPACING = Component.translatableWithFallback("config.advancedoverlay.channel.spacing.horizontal", "Horizontal Spacing");
+	public static final Component EDIT_MODULE = Component.translatableWithFallback("config.advancedoverlay.module.edit.title", "Edit Module");
+	public static final Component MODULE_SETTINGS = Component.translatableWithFallback("config.advancedoverlay.module.settings.title", "Module Settings");
+	public static final Component ADD_MODULE = Component.translatableWithFallback("config.advancedoverlay.module.add", "Add Module");
+	public static final Component REMOVE_MODULE = Component.translatableWithFallback("config.advancedoverlay.module.remove", "Remove Module");
 
 	public static Component verticalSpacing(String verticalSpacing) {
 		return Component.translatableWithFallback("config.advancedoverlay.channel.spacing.vertical.value", "Vertical Spacing: %s%%", verticalSpacing);

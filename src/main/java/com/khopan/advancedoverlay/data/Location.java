@@ -1,4 +1,4 @@
-package com.khopan.advancedoverlay.channel;
+package com.khopan.advancedoverlay.data;
 
 import com.khopan.advancedoverlay.Text;
 

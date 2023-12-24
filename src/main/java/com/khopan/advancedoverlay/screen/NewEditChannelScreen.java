@@ -3,8 +3,9 @@ package com.khopan.advancedoverlay.screen;
 import java.util.function.Consumer;
 
 import com.khopan.advancedoverlay.Text;
-import com.khopan.advancedoverlay.channel.Channel;
-import com.khopan.advancedoverlay.channel.Location;
+import com.khopan.advancedoverlay.data.Channel;
+import com.khopan.advancedoverlay.data.Location;
+import com.khopan.advancedoverlay.screen.modulelist.EditModuleScreen;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.gui.components.AbstractSliderButton;
@@ -63,9 +64,7 @@ public class NewEditChannelScreen extends Screen {
 		helper.addChild(this.locationButton);
 		helper.addChild(new SpacingSlider(true));
 		helper.addChild(new SpacingSlider(false));
-		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
-		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
-		helper.addChild(Button.builder(CommonComponents.GUI_CONTINUE, button -> {}).build());
+		helper.addChild(Button.builder(Text.EDIT_MODULE, button -> this.minecraft.setScreen(new EditModuleScreen(this))).build(), 2);
 		helper.addChild(SpacerElement.height(20), 2);
 		helper.addChild(Button.builder(CommonComponents.GUI_CANCEL, button -> this.minecraft.setScreen(this.lastScreen)).build());
 		helper.addChild(Button.builder(CommonComponents.GUI_DONE, this :: done).build());

@@ -3,14 +3,11 @@ package com.khopan.advancedoverlay.screen.channellist;
 import java.util.List;
 
 import com.khopan.advancedoverlay.AdvancedOverlay;
-import com.khopan.advancedoverlay.channel.Channel;
+import com.khopan.advancedoverlay.data.Channel;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.components.ObjectSelectionList;
 
-@Environment(EnvType.CLIENT)
 public class ChannelList extends ObjectSelectionList<ChannelEntry> {
 	final ChannelListScreen screen;
 

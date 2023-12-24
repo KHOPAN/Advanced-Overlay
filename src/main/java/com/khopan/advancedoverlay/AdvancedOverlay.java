@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.khopan.advancedoverlay.api.IExtension;
-import com.khopan.advancedoverlay.channel.Channel;
+import com.khopan.advancedoverlay.data.Channel;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;

@@ -1,8 +1,6 @@
-package com.khopan.advancedoverlay.screen.channellist;
+package com.khopan.advancedoverlay.screen.modulelist;
 
 import com.khopan.advancedoverlay.Text;
-import com.khopan.advancedoverlay.data.Channel;
-import com.khopan.advancedoverlay.screen.NewEditChannelScreen;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.Minecraft;
@@ -11,44 +9,29 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 
-public class ChannelListScreen extends Screen {
+public class EditModuleScreen extends Screen {
 	private final Screen lastScreen;
 
-	private ChannelList list;
+	private ModuleList list;
 
-	public ChannelListScreen(Screen lastScreen) {
-		super(Text.CHANNEL_LIST);
+	public EditModuleScreen(Screen lastScreen) {
+		super(Text.EDIT_MODULE);
 		this.lastScreen = lastScreen;
 	}
 
 	@Override
 	protected void init() {
-		if(this.list == null) {
-			this.list = new ChannelList(this);
-		} else {
-			this.list.refresh();
-		}
-
+		this.list = new ModuleList(this);
 		this.addWidget(this.list);
 		double halfWidth = this.width * 0.5d;
 		int top = this.height - 52;
 		int left = (int) Math.round(halfWidth - 154.0d);
 		int bottom = this.height - 28;
 		int right = (int) Math.round(halfWidth + 4.0d);
-		this.addRenderableWidget(Button.builder(Text.EDIT_CHANNEL, this :: edit).bounds(left, top, 150, 20).build());
-		this.addRenderableWidget(Button.builder(Text.NEW_CHANNEL, button -> this.minecraft.setScreen(new NewEditChannelScreen(this, Channel.getInstance(), false, channel -> this.list.addChannel(channel)))).bounds(right, top, 150, 20).build());
-		this.addRenderableWidget(Button.builder(Text.DELETE_CHANNEL, button -> this.list.deleteSelected()).bounds(left, bottom, 150, 20).build());
+		this.addRenderableWidget(Button.builder(Text.MODULE_SETTINGS, button -> {}).bounds(left, top, 150, 20).build());
+		this.addRenderableWidget(Button.builder(Text.ADD_MODULE, button -> {}).bounds(right, top, 150, 20).build());
+		this.addRenderableWidget(Button.builder(Text.REMOVE_MODULE, button -> {}).bounds(left, bottom, 150, 20).build());
 		this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, button -> this.minecraft.setScreen(this.lastScreen)).bounds(right, bottom, 150, 20).build());
-	}
-
-	private void edit(Button button) {
-		ChannelEntry entry = this.list.getSelected();
-
-		if(entry == null) {
-			return;
-		}
-
-		this.minecraft.setScreen(new NewEditChannelScreen(this, entry.getChannel(), true, channel -> this.list.refresh()));
 	}
 
 	@Override

@@ -1,24 +1,24 @@
-package com.khopan.advancedoverlay.screen.channellist;
+package com.khopan.advancedoverlay.screen.modulelist;
 
 import org.lwjgl.glfw.GLFW;
 
-import com.khopan.advancedoverlay.data.Channel;
+import com.khopan.advancedoverlay.data.Module;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.ObjectSelectionList;
 import net.minecraft.network.chat.Component;
 
-public class ChannelEntry extends ObjectSelectionList.Entry<ChannelEntry> {
-	private final ChannelList list;
-	private final Channel channel;
+public class ModuleEntry extends ObjectSelectionList.Entry<ModuleEntry> {
+	private final ModuleList list;
+	private final Module module;
 
 	private String name;
 
-	public ChannelEntry(ChannelList list, Channel channel) {
+	public ModuleEntry(ModuleList list, Module module) {
 		this.list = list;
-		this.channel = channel;
-		this.name = this.channel.getChannelName();
+		this.module = module;
+		this.name = this.module.getModuleName();
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class ChannelEntry extends ObjectSelectionList.Entry<ChannelEntry> {
 		return false;
 	}
 
-	public Channel getChannel() {
-		return this.channel;
+	public Module getModule() {
+		return this.module;
 	}
 }
