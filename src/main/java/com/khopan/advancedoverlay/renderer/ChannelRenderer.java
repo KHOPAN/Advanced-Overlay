@@ -4,6 +4,7 @@ import java.awt.Dimension;
 
 import com.khopan.advancedoverlay.api.IModule;
 import com.khopan.advancedoverlay.data.Channel;
+import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.Minecraft;
@@ -37,8 +38,9 @@ public class ChannelRenderer {
 		}
 
 		Minecraft minecraft = Minecraft.getInstance();
-		int screenWidth = minecraft.screen.width;
-		int screenHeight = minecraft.screen.height;
+		Window window = minecraft.getWindow();
+		int screenWidth = window.getGuiScaledWidth();
+		int screenHeight = window.getGuiScaledHeight();
 		int x = screenWidth - maxWidth - 5;
 		int y = (int) Math.round((((double) screenHeight) - ((double) totalHeight)) * 0.5d);
 		Gui.fill(stack, x - 1, y - 1, x + maxWidth + 1, y + totalHeight + 1, 0x66000000);

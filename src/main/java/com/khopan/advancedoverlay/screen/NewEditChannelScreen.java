@@ -89,6 +89,7 @@ public class NewEditChannelScreen extends Screen {
 		List<Module> moduleList = this.channel.getModuleList();
 		moduleList.clear();
 		moduleList.addAll(this.moduleList);
+		this.channel.makeInstance();
 		this.minecraft.setScreen(this.lastScreen);
 
 		if(this.onDone != null) {
