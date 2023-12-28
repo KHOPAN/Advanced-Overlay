@@ -20,9 +20,11 @@ public class ChannelRenderer {
 
 		int moduleSize = channel.moduleList.size();
 		Dimension[] sizeList = new Dimension[moduleSize];
+		Minecraft minecraft = Minecraft.getInstance();
 
 		for(int i = 0; i < sizeList.length; i++) {
 			ModuleEntry entry = channel.moduleList.get(i);
+			entry.instance.tick(minecraft);
 			sizeList[i] = new Dimension(entry.instance.getWidth(), entry.instance.getHeight());
 		}
 
@@ -36,7 +38,6 @@ public class ChannelRenderer {
 			totalHeight += size.height;
 		}
 
-		Minecraft minecraft = Minecraft.getInstance();
 		Window window = minecraft.getWindow();
 		int screenWidth = window.getGuiScaledWidth();
 		int screenHeight = window.getGuiScaledHeight();
