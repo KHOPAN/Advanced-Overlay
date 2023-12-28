@@ -43,6 +43,8 @@ public class NewEditChannelScreen extends Screen {
 		this.onDone = onDone;
 		this.moduleList = new ArrayList<>();
 		this.moduleList.addAll(this.channel.moduleList);
+		this.verticalSpacing = this.channel.verticalSpacing;
+		this.horizontalSpacing = this.channel.horizontalSpacing;
 	}
 
 	@Override
@@ -50,7 +52,11 @@ public class NewEditChannelScreen extends Screen {
 		this.layout = new GridLayout();
 		this.layout.defaultCellSetting().paddingHorizontal(5).paddingBottom(4).alignHorizontallyCenter();
 		RowHelper helper = this.layout.createRowHelper(2);
-		this.channelNameBox = new EditBox(this.font, 0, 0, 150, 20, Text.CHANNEL_NAME);
+
+		if(this.channelNameBox == null) {
+			this.channelNameBox = new EditBox(this.font, 0, 0, 150, 20, Text.CHANNEL_NAME);
+		}
+
 		this.channelNameBox.setHint(Text.CHANNEL_NAME);
 
 		if(this.edit) {
@@ -58,14 +64,15 @@ public class NewEditChannelScreen extends Screen {
 		}
 
 		helper.addChild(this.channelNameBox);
-		this.locationButton = CycleButton.<Location>builder(location -> location.getText())
-				.withValues(Location.values())
-				.withInitialValue(this.channel.location)
-				.create(0, 0, 150, 20, Text.LOCATION);
+
+		if(this.locationButton == null) {
+			this.locationButton = CycleButton.<Location>builder(location -> location.getText())
+					.withValues(Location.values())
+					.withInitialValue(this.channel.location)
+					.create(0, 0, 150, 20, Text.LOCATION);
+		}
 
 		helper.addChild(this.locationButton);
-		this.verticalSpacing = this.channel.verticalSpacing;
-		this.horizontalSpacing = this.channel.horizontalSpacing;
 		helper.addChild(new SpacingSlider(true));
 		helper.addChild(new SpacingSlider(false));
 		helper.addChild(Button.builder(Text.EDIT_MODULE, button -> this.minecraft.setScreen(new EditModuleScreen(this, this.moduleList))).build(), 2);
