@@ -42,11 +42,15 @@ public class ChannelRenderer {
 		int screenHeight = window.getGuiScaledHeight();
 		int x = screenWidth - maxWidth - 5;
 		int y = (int) Math.round((((double) screenHeight) - ((double) totalHeight)) * 0.5d);
-		Gui.fill(stack, x - 1, y - 1, x + maxWidth + 1, y + totalHeight + 1, 0x66000000);
+		int maxIndex = moduleSize - 1;
+		int left = x - 1;
+		int right = x + maxWidth + 1;
 
 		for(int i = 0; i < moduleSize; i++) {
 			Dimension size = sizeList[i];
 			ModuleEntry entry = channel.moduleList.get(i);
+			int background = entry.instance.getBackgroundColor();
+			Gui.fill(stack, left, y - (i == 0 ? 1 : 0), right, y + size.height + (i == maxIndex ? 1 : 0), background);
 			entry.instance.render(stack, tickDelta, x, y, maxWidth, size.height);
 			y += size.height;
 		}

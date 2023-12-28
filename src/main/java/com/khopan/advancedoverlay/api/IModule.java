@@ -7,4 +7,8 @@ public interface IModule {
 	int getWidth();
 	int getHeight();
 	void render(PoseStack stack, float tickDelta, int x, int y, int width, int height);
+
+	default int getBackgroundColor() {
+		return 0x66000000;
+	}
 }
