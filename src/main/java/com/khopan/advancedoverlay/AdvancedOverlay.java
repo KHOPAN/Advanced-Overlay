@@ -7,11 +7,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.khopan.advancedoverlay.annotation.Name;
 import com.khopan.advancedoverlay.api.IExtension;
 import com.khopan.advancedoverlay.api.IModule;
-import com.khopan.advancedoverlay.data.Channel;
+import com.khopan.advancedoverlay.api.annotation.Name;
 import com.khopan.advancedoverlay.data.Module;
+import com.khopan.advancedoverlay.screen.ChannelListScreen.ChannelEntry;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -22,8 +22,8 @@ public class AdvancedOverlay implements ClientModInitializer {
 	public static final String MOD_IDENTIFIER = "advancedoverlay";
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(AdvancedOverlay.MOD_NAME);
-	public static final List<Channel> CHANNEL_LIST = new ArrayList<>();
-	public static final List<Module> MODULE_LIST = new ArrayList<>();
+	public static final List<ChannelEntry> CHANNELS = new ArrayList<>();
+	public static final List<Module> MODULES = new ArrayList<>();
 
 	@Override
 	public void onInitializeClient() {
@@ -116,7 +116,7 @@ public class AdvancedOverlay implements ClientModInitializer {
 					return;
 				}
 
-				AdvancedOverlay.MODULE_LIST.add(new Module(name, () -> {
+				AdvancedOverlay.MODULES.add(new Module(name, () -> {
 					IModule module;
 
 					try {

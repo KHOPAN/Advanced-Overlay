@@ -1,7 +1,7 @@
 package com.khopan.advancedoverlay.builtin;
 
-import com.khopan.advancedoverlay.annotation.Name;
 import com.khopan.advancedoverlay.api.IModule;
+import com.khopan.advancedoverlay.api.annotation.Name;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.Minecraft;

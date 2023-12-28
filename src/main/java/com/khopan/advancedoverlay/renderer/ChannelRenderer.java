@@ -2,8 +2,8 @@ package com.khopan.advancedoverlay.renderer;
 
 import java.awt.Dimension;
 
-import com.khopan.advancedoverlay.api.IModule;
-import com.khopan.advancedoverlay.data.Channel;
+import com.khopan.advancedoverlay.screen.ChannelListScreen.ChannelEntry;
+import com.khopan.advancedoverlay.screen.EditModuleScreen.ModuleEntry;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -13,18 +13,17 @@ import net.minecraft.client.gui.Gui;
 public class ChannelRenderer {
 	private ChannelRenderer() {}
 
-	public static void render(PoseStack stack, float tickDelta, Channel channel) {
-		IModule[] moduleList = channel.getModuleInstanceList();
-
-		if(moduleList == null || moduleList.length == 0) {
+	public static void render(PoseStack stack, float tickDelta, ChannelEntry channel) {
+		if(stack == null || channel == null || channel.moduleList.isEmpty()) {
 			return;
 		}
 
-		Dimension[] sizeList = new Dimension[moduleList.length];
+		int moduleSize = channel.moduleList.size();
+		Dimension[] sizeList = new Dimension[moduleSize];
 
 		for(int i = 0; i < sizeList.length; i++) {
-			IModule module = moduleList[i];
-			sizeList[i] = new Dimension(module.getWidth(), module.getHeight());
+			ModuleEntry entry = channel.moduleList.get(i);
+			sizeList[i] = new Dimension(entry.instance.getWidth(), entry.instance.getHeight());
 		}
 
 		int maxWidth = 0;
@@ -45,9 +44,10 @@ public class ChannelRenderer {
 		int y = (int) Math.round((((double) screenHeight) - ((double) totalHeight)) * 0.5d);
 		Gui.fill(stack, x - 1, y - 1, x + maxWidth + 1, y + totalHeight + 1, 0x66000000);
 
-		for(int i = 0; i < moduleList.length; i++) {
+		for(int i = 0; i < moduleSize; i++) {
 			Dimension size = sizeList[i];
-			moduleList[i].render(stack, tickDelta, x, y, maxWidth, size.height);
+			ModuleEntry entry = channel.moduleList.get(i);
+			entry.instance.render(stack, tickDelta, x, y, maxWidth, size.height);
 			y += size.height;
 		}
 	}
