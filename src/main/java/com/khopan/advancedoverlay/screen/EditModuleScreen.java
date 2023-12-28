@@ -56,11 +56,11 @@ public class EditModuleScreen extends Screen {
 	private void moduleSettings(Button button) {
 		ModuleEntry module = this.list.getSelected();
 
-		if(module == null) {
+		if(module == null || !module.instance.hasSettings()) {
 			return;
 		}
 
-		// Open settings screen
+		this.minecraft.setScreen(module.instance.openSettingsScreen(this));
 	}
 
 	private void removeModule(Button button) {
@@ -83,9 +83,10 @@ public class EditModuleScreen extends Screen {
 	}
 
 	private void updateButtonActive() {
-		boolean active = this.list.getSelected() != null;
-		this.settingsButton.active = active;
+		ModuleEntry module = this.list.getSelected();
+		boolean active = module != null;
 		this.removeButton.active = active;
+		this.settingsButton.active = active ? module.instance.hasSettings() : false;
 	}
 
 	@Override
