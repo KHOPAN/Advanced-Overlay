@@ -19,6 +19,7 @@ public class ChannelRenderer {
 		}
 
 		int moduleSize = channel.moduleList.size();
+		int maxIndex = moduleSize - 1;
 		Dimension[] sizeList = new Dimension[moduleSize];
 		Minecraft minecraft = Minecraft.getInstance();
 
@@ -41,9 +42,28 @@ public class ChannelRenderer {
 		Window window = minecraft.getWindow();
 		int screenWidth = window.getGuiScaledWidth();
 		int screenHeight = window.getGuiScaledHeight();
-		int x = screenWidth - maxWidth - 5;
-		int y = (int) Math.round((((double) screenHeight) - ((double) totalHeight)) * 0.5d);
-		int maxIndex = moduleSize - 1;
+		int xLocation = channel.location.getX();
+		int yLocation = channel.location.getY();
+		int x;
+
+		if(xLocation == 0) {
+			x = 0;
+		} else if(xLocation == 1) {
+			x = (int) Math.round((((double) screenWidth) - ((double) maxWidth)) * 0.5d);
+		} else {
+			x = (int) Math.round(((double) screenWidth) - ((double) maxWidth));
+		}
+
+		int y;
+
+		if(yLocation == 0) {
+			y = 0;
+		} else if(yLocation == 1) {
+			y = (int) Math.round((((double) screenHeight) - ((double) totalHeight)) * 0.5d);
+		} else {
+			y = (int) Math.round(((double) screenHeight) - ((double) totalHeight));
+		}
+
 		int left = x - 1;
 		int right = x + maxWidth + 1;
 
