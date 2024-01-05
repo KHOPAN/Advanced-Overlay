@@ -56,7 +56,7 @@ public class ChannelRenderer {
 
 		int screenHeight = window.getGuiScaledHeight();
 		int yLocation = channel.location.getY();
-		int remainingHeight = (int) Math.round(((double) screenWidth) - ((double) maxWidth));
+		int remainingHeight = (int) Math.round(((double) screenHeight) - ((double) totalHeight));
 		double vertical = Math.min(1.0d, Math.max(0.0d, channel.verticalSpacing));
 		int y;
 
