@@ -1,8 +1,8 @@
-package com.khopan.advancedoverlay.builtin;
+package com.khopan.advancedoverlay.common.builtin;
 
-import com.khopan.advancedoverlay.api.IExtension;
-import com.khopan.advancedoverlay.api.ModuleRegistry;
-import com.khopan.advancedoverlay.api.annotation.Name;
+import com.khopan.advancedoverlay.common.api.IExtension;
+import com.khopan.advancedoverlay.common.api.ModuleRegistry;
+import com.khopan.advancedoverlay.common.api.annotation.Name;
 
 @Name(CoreExtension.EXTENSION_NAME)
 public class CoreExtension implements IExtension {

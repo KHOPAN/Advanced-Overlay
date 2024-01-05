@@ -1,4 +1,4 @@
-package com.khopan.advancedoverlay.screen;
+package com.khopan.advancedoverlay.common.screen;
 
 import java.util.function.BiConsumer;
 
@@ -6,8 +6,8 @@ import org.lwjgl.glfw.GLFW;
 
 import com.khopan.advancedoverlay.AdvancedOverlay;
 import com.khopan.advancedoverlay.Text;
-import com.khopan.advancedoverlay.api.IModule;
-import com.khopan.advancedoverlay.data.Module;
+import com.khopan.advancedoverlay.common.api.IModule;
+import com.khopan.advancedoverlay.common.data.Module;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.gui.components.Button;

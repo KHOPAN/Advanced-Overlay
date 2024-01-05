@@ -1,4 +1,4 @@
-package com.khopan.advancedoverlay.screen;
+package com.khopan.advancedoverlay.common.screen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import org.lwjgl.glfw.GLFW;
 
 import com.khopan.advancedoverlay.AdvancedOverlay;
 import com.khopan.advancedoverlay.Text;
-import com.khopan.advancedoverlay.data.Location;
-import com.khopan.advancedoverlay.screen.EditModuleScreen.ModuleEntry;
+import com.khopan.advancedoverlay.common.data.Location;
+import com.khopan.advancedoverlay.common.screen.EditModuleScreen.ModuleEntry;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.gui.components.Button;

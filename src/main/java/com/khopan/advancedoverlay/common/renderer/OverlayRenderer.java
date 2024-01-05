@@ -1,7 +1,7 @@
-package com.khopan.advancedoverlay.renderer;
+package com.khopan.advancedoverlay.common.renderer;
 
 import com.khopan.advancedoverlay.AdvancedOverlay;
-import com.khopan.advancedoverlay.screen.ChannelListScreen.ChannelEntry;
+import com.khopan.advancedoverlay.common.screen.ChannelListScreen.ChannelEntry;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 public class OverlayRenderer {

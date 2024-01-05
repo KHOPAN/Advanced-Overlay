@@ -7,11 +7,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.khopan.advancedoverlay.api.IExtension;
-import com.khopan.advancedoverlay.api.IModule;
-import com.khopan.advancedoverlay.api.annotation.Name;
-import com.khopan.advancedoverlay.data.Module;
-import com.khopan.advancedoverlay.screen.ChannelListScreen.ChannelEntry;
+import com.khopan.advancedoverlay.common.api.IExtension;
+import com.khopan.advancedoverlay.common.api.IModule;
+import com.khopan.advancedoverlay.common.api.annotation.Name;
+import com.khopan.advancedoverlay.common.data.Module;
+import com.khopan.advancedoverlay.common.screen.ChannelListScreen.ChannelEntry;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;

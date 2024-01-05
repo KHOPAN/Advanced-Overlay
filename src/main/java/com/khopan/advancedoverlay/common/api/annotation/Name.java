@@ -1,4 +1,4 @@
-package com.khopan.advancedoverlay.api.annotation;
+package com.khopan.advancedoverlay.common.api.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

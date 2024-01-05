@@ -1,4 +1,4 @@
-package com.khopan.advancedoverlay.api;
+package com.khopan.advancedoverlay.common.api;
 
 @FunctionalInterface
 public interface IExtension {

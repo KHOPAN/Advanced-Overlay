@@ -1,8 +1,8 @@
-package com.khopan.advancedoverlay.data;
+package com.khopan.advancedoverlay.common.data;
 
 import java.util.function.Supplier;
 
-import com.khopan.advancedoverlay.api.IModule;
+import com.khopan.advancedoverlay.common.api.IModule;
 
 public class Module {
 	private final String name;

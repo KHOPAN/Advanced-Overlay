@@ -7,9 +7,9 @@ import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.khopan.advancedoverlay.AdvancedOverlay;
-import com.khopan.advancedoverlay.renderer.OverlayRenderer;
-import com.khopan.advancedoverlay.screen.ChannelListScreen.ChannelEntry;
-import com.khopan.advancedoverlay.screen.EditModuleScreen.ModuleEntry;
+import com.khopan.advancedoverlay.common.renderer.OverlayRenderer;
+import com.khopan.advancedoverlay.common.screen.ChannelListScreen.ChannelEntry;
+import com.khopan.advancedoverlay.common.screen.EditModuleScreen.ModuleEntry;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.Minecraft;

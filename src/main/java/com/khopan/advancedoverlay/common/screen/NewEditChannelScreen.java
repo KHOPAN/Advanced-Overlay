@@ -1,13 +1,13 @@
-package com.khopan.advancedoverlay.screen;
+package com.khopan.advancedoverlay.common.screen;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 import com.khopan.advancedoverlay.Text;
-import com.khopan.advancedoverlay.data.Location;
-import com.khopan.advancedoverlay.screen.ChannelListScreen.ChannelEntry;
-import com.khopan.advancedoverlay.screen.EditModuleScreen.ModuleEntry;
+import com.khopan.advancedoverlay.common.data.Location;
+import com.khopan.advancedoverlay.common.screen.ChannelListScreen.ChannelEntry;
+import com.khopan.advancedoverlay.common.screen.EditModuleScreen.ModuleEntry;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.gui.components.AbstractSliderButton;

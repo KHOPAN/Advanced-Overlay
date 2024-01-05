@@ -1,4 +1,4 @@
-package com.khopan.advancedoverlay.api;
+package com.khopan.advancedoverlay.common.api;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 

@@ -1,9 +1,9 @@
-package com.khopan.advancedoverlay.renderer;
+package com.khopan.advancedoverlay.common.renderer;
 
 import java.awt.Dimension;
 
-import com.khopan.advancedoverlay.screen.ChannelListScreen.ChannelEntry;
-import com.khopan.advancedoverlay.screen.EditModuleScreen.ModuleEntry;
+import com.khopan.advancedoverlay.common.screen.ChannelListScreen.ChannelEntry;
+import com.khopan.advancedoverlay.common.screen.EditModuleScreen.ModuleEntry;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 
