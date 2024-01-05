@@ -41,27 +41,31 @@ public class ChannelRenderer {
 
 		Window window = minecraft.getWindow();
 		int screenWidth = window.getGuiScaledWidth();
-		int screenHeight = window.getGuiScaledHeight();
 		int xLocation = channel.location.getX();
-		int yLocation = channel.location.getY();
+		int remainingWidth = (int) Math.round(((double) screenWidth) - ((double) maxWidth));
+		double horizontal = Math.min(1.0d, Math.max(0.0d, channel.horizontalSpacing));
 		int x;
 
 		if(xLocation == 0) {
-			x = 0;
+			x = (int) Math.round(((double) remainingWidth) * horizontal);
 		} else if(xLocation == 1) {
 			x = (int) Math.round((((double) screenWidth) - ((double) maxWidth)) * 0.5d);
 		} else {
-			x = (int) Math.round(((double) screenWidth) - ((double) maxWidth));
+			x = (int) Math.round(((double) remainingWidth) * (1.0d - horizontal));
 		}
 
+		int screenHeight = window.getGuiScaledHeight();
+		int yLocation = channel.location.getY();
+		int remainingHeight = (int) Math.round(((double) screenWidth) - ((double) maxWidth));
+		double vertical = Math.min(1.0d, Math.max(0.0d, channel.verticalSpacing));
 		int y;
 
 		if(yLocation == 0) {
-			y = 0;
+			y = (int) Math.round(((double) remainingHeight) * vertical);
 		} else if(yLocation == 1) {
 			y = (int) Math.round((((double) screenHeight) - ((double) totalHeight)) * 0.5d);
 		} else {
-			y = (int) Math.round(((double) screenHeight) - ((double) totalHeight));
+			y = (int) Math.round(((double) remainingHeight) * (1.0d - vertical));
 		}
 
 		int left = x - 1;
