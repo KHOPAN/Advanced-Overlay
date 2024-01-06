@@ -115,7 +115,7 @@ public class ModuleSelectionScreen extends Screen {
 
 		@Override
 		public void render(PoseStack stack, int index, int top, int left, int width, int height, int mouseX, int mouseY, boolean mouseOver, float partialTick) {
-			ModuleSelectionScreen.this.font.drawShadow(stack, this.name, (((float) ModuleSelectionScreen.this.width) - ((float) ModuleSelectionScreen.this.font.width(this.name))) * 0.5f, ((float) top) + (((float) height) - ((float) ModuleSelectionScreen.this.font.lineHeight)) * 0.5f, 0xFFFFFF);
+			ModuleSelectionScreen.this.font.drawShadow(stack, this.name, (((float) ModuleSelectionScreen.this.list.getRectangle().width()) - ((float) ModuleSelectionScreen.this.font.width(this.name))) * 0.5f, ((float) top) + (((float) height) - ((float) ModuleSelectionScreen.this.font.lineHeight)) * 0.5f, 0xFFFFFF);
 		}
 
 		@Override

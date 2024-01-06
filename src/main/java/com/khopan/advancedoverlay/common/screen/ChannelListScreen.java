@@ -180,7 +180,7 @@ public class ChannelListScreen extends Screen {
 
 		@Override
 		public void render(PoseStack stack, int index, int top, int left, int width, int height, int mouseX, int mouseY, boolean mouseOver, float partialTick) {
-			ChannelListScreen.this.font.drawShadow(stack, this.name, (((float) ChannelListScreen.this.width) - ((float) ChannelListScreen.this.font.width(this.name))) * 0.5f, ((float) top) + (((float) height) - ((float) ChannelListScreen.this.font.lineHeight)) * 0.5f, 0xFFFFFF);
+			ChannelListScreen.this.font.drawShadow(stack, this.name, (((float) ChannelListScreen.this.list.getRectangle().width()) - ((float) ChannelListScreen.this.font.width(this.name))) * 0.5f, ((float) top) + (((float) height) - ((float) ChannelListScreen.this.font.lineHeight)) * 0.5f, 0xFFFFFF);
 		}
 
 		@Override

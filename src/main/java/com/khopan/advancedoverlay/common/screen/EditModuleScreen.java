@@ -149,7 +149,7 @@ public class EditModuleScreen extends Screen {
 
 		@Override
 		public void render(PoseStack stack, int index, int top, int left, int width, int height, int mouseX, int mouseY, boolean mouseOver, float partialTick) {
-			EditModuleScreen.this.font.drawShadow(stack, this.name, (((float) EditModuleScreen.this.width) - ((float) EditModuleScreen.this.font.width(this.name))) * 0.5f, ((float) top) + (((float) height) - ((float) EditModuleScreen.this.font.lineHeight)) * 0.5f, 0xFFFFFF);
+			EditModuleScreen.this.font.drawShadow(stack, this.name, (((float) EditModuleScreen.this.list.getRectangle().width()) - ((float) EditModuleScreen.this.font.width(this.name))) * 0.5f, ((float) top) + (((float) height) - ((float) EditModuleScreen.this.font.lineHeight)) * 0.5f, 0xFFFFFF);
 		}
 
 		@Override
