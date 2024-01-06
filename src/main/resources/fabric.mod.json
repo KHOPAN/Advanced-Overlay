@@ -16,7 +16,7 @@
 		],
 
 		"advancedoverlay": [
-			"com.khopan.advancedoverlay.builtin.CoreExtension"
+			"com.khopan.advancedoverlay.common.builtin.CoreExtension"
 		]
 	},
 
