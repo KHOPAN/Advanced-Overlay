@@ -1,21 +1,19 @@
 package com.khopan.advancedoverlay.common.builtin;
 
+import java.util.Locale;
+
 import com.khopan.advancedoverlay.common.api.IModule;
 import com.khopan.advancedoverlay.common.api.annotation.Name;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.Minecraft;
 
-@Name(HelloWorldModule.MODULE_NAME)
-public class HelloWorldModule implements IModule {
-	public static final String MODULE_NAME = "Hello World";
-	public static final String TEXT = "Hello, world!";
+@Name(FPSModule.MODULE_NAME)
+public class FPSModule implements IModule {
+	public static final String MODULE_NAME = "FPS";
 
-	private final Minecraft minecraft;
-
-	public HelloWorldModule() {
-		this.minecraft = Minecraft.getInstance();
-	}
+	private Minecraft minecraft;
+	private String text;
 
 	@Override
 	public boolean isVisible() {
@@ -24,7 +22,7 @@ public class HelloWorldModule implements IModule {
 
 	@Override
 	public int getWidth() {
-		return this.minecraft.font.width(HelloWorldModule.TEXT);
+		return this.minecraft.font.width(this.text);
 	}
 
 	@Override
@@ -34,6 +32,12 @@ public class HelloWorldModule implements IModule {
 
 	@Override
 	public void render(PoseStack stack, float tickDelta, int x, int y, int width, int height) {
-		this.minecraft.font.drawShadow(stack, HelloWorldModule.TEXT, x, y, 0xFFFFFF);
+		this.minecraft.font.drawShadow(stack, this.text, x, y, 0xFFFFFF);
+	}
+
+	@Override
+	public void tick(Minecraft minecraft) {
+		this.minecraft = minecraft;
+		this.text = String.format(Locale.ROOT, "%d FPS", this.minecraft.getFps());
 	}
 }
