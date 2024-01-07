@@ -9,7 +9,7 @@
 	},
 
 	"license": "MIT License",
-	"icon": "assets/advancedoverlay/icon.png",
+	"icon": "assets/advancedoverlay/logo.png",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
