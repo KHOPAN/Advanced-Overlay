@@ -13,5 +13,7 @@ public class CoreExtension implements IExtension {
 		registry.register(HelloWorldModule.class);
 		registry.register(FPSModule.class);
 		registry.register(PositionModule.class);
+		registry.register(GameTimeModule.class);
+		registry.register(RealTimeModule.class);
 	}
 }
