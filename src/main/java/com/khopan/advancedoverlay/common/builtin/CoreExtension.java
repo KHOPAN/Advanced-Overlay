@@ -12,5 +12,6 @@ public class CoreExtension implements IExtension {
 	public void registerModules(ModuleRegistry registry) {
 		registry.register(HelloWorldModule.class);
 		registry.register(FPSModule.class);
+		registry.register(PositionModule.class);
 	}
 }
