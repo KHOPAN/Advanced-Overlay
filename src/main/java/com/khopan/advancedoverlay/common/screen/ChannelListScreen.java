@@ -74,12 +74,14 @@ public class ChannelListScreen extends Screen {
 		AdvancedOverlay.CHANNELS.remove(channel);
 		this.list.remove(channel);
 		this.list.setSelected(null);
+		AdvancedOverlay.saveFile();
 	}
 
 	private void addChannel(ChannelEntry channel) {
 		AdvancedOverlay.CHANNELS.add(channel);
 		this.list.add(channel);
 		this.list.setSelected(channel);
+		AdvancedOverlay.saveFile();
 	}
 
 	private void updateChannel(ChannelEntry channel) {
@@ -97,6 +99,7 @@ public class ChannelListScreen extends Screen {
 
 		AdvancedOverlay.CHANNELS.set(index, channel);
 		this.list.set(index, channel);
+		AdvancedOverlay.saveFile();
 	}
 
 	private void updateButtonActive() {

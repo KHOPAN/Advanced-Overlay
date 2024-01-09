@@ -1,5 +1,6 @@
 package com.khopan.advancedoverlay;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +12,13 @@ import com.khopan.advancedoverlay.common.api.IExtension;
 import com.khopan.advancedoverlay.common.api.IModule;
 import com.khopan.advancedoverlay.common.api.annotation.Name;
 import com.khopan.advancedoverlay.common.data.Module;
+import com.khopan.advancedoverlay.common.io.ChannelWriter;
 import com.khopan.advancedoverlay.common.screen.ChannelListScreen.ChannelEntry;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.entrypoint.EntrypointContainer;
+import net.minecraft.client.Minecraft;
 
 public class AdvancedOverlay implements ClientModInitializer {
 	public static final String MOD_NAME = "Advanced Overlay";
@@ -131,5 +134,21 @@ public class AdvancedOverlay implements ClientModInitializer {
 		}
 
 		AdvancedOverlay.LOGGER.info("Finished initializing {}", AdvancedOverlay.MOD_NAME);
+	}
+
+	public static void saveFile() {
+		Minecraft minecraft = Minecraft.getInstance();
+		File file = new File(minecraft.gameDirectory, AdvancedOverlay.MOD_IDENTIFIER + ".bin");
+
+		new Thread(() -> {
+			ChannelWriter writer = new ChannelWriter();
+			writer.writeChannelList(AdvancedOverlay.CHANNELS);
+
+			try {
+				writer.write(file);
+			} catch(Throwable Errors) {
+				Errors.printStackTrace();
+			}
+		}).start();
 	}
 }
