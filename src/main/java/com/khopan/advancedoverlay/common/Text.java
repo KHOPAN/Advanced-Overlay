@@ -1,4 +1,4 @@
-package com.khopan.advancedoverlay;
+package com.khopan.advancedoverlay.common;
 
 import net.minecraft.network.chat.Component;
 

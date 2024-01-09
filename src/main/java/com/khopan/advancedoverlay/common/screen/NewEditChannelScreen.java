@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import com.khopan.advancedoverlay.Text;
+import com.khopan.advancedoverlay.common.Text;
 import com.khopan.advancedoverlay.common.data.Location;
 import com.khopan.advancedoverlay.common.screen.ChannelListScreen.ChannelEntry;
 import com.khopan.advancedoverlay.common.screen.EditModuleScreen.ModuleEntry;

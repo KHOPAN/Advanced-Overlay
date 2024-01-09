@@ -6,7 +6,7 @@ import java.util.List;
 import org.lwjgl.glfw.GLFW;
 
 import com.khopan.advancedoverlay.AdvancedOverlay;
-import com.khopan.advancedoverlay.Text;
+import com.khopan.advancedoverlay.common.Text;
 import com.khopan.advancedoverlay.common.data.Location;
 import com.khopan.advancedoverlay.common.screen.EditModuleScreen.ModuleEntry;
 import com.mojang.blaze3d.vertex.PoseStack;

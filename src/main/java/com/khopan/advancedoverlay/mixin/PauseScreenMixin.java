@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import com.khopan.advancedoverlay.Text;
+import com.khopan.advancedoverlay.common.Text;
 import com.khopan.advancedoverlay.common.screen.ChannelListScreen;
 
 import net.minecraft.client.Minecraft;

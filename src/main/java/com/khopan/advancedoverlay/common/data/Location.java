@@ -1,6 +1,6 @@
 package com.khopan.advancedoverlay.common.data;
 
-import com.khopan.advancedoverlay.Text;
+import com.khopan.advancedoverlay.common.Text;
 
 import net.minecraft.network.chat.Component;
 
