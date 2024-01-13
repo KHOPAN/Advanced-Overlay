@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "advancedoverlay",
+	"version": "1.0.0",
+	"name": "Advanced Overlay",
+	"authors": ["KHOPAN"],
+	"contact": {
+		"sources": "https://github.com/KHOPAN/Advanced-Overlay"
+	},
+
+	"license": "MIT License",
+	"icon": "assets/advancedoverlay/logo.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.khopan.advancedoverlay.fabric.AdvancedOverlayFabric"
+		],
+
+		"advancedoverlay": [
+			"com.khopan.advancedoverlay.common.builtin.CoreExtension"
+		]
+	},
+
+	"depends": {
+		"fabricloader": ">=0.14.23",
+		"minecraft": "~1.19.4",
+		"java": ">=17"
+	},
+
+	"mixins": [
+		"advancedoverlay.mixins.json"
+	]
+}

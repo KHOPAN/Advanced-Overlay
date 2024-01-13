@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[45,)"
+issueTrackerURL = "https://github.com/KHOPAN/Advanced-Overlay/issues"
+license = "MIT License"
+
+[[mods]]
+modId = "advancedoverlay"
+version = "1.0.0"
+displayName = "Advanced Overlay"
+authors = "KHOPAN"
+description = '''
+
+'''
+#logoFile = ""
+
+[[dependencies.advancedoverlay]]
+modId = "forge"
+mandatory = true
+versionRange = "[45,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.advancedoverlay]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.4,)"
+ordering = "NONE"
+side = "BOTH"
