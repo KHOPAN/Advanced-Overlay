@@ -1,21 +1,20 @@
 package com.khopan.advancedoverlay.common.io;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 
-public class FileWriter {
-	private final List<Byte> list;
+public class Writer {
+	private final ByteArrayOutputStream stream;
 
-	public FileWriter() {
-		this.list = new ArrayList<>();
+	public Writer() {
+		this.stream = new ByteArrayOutputStream();
 	}
 
 	public void writeByte(byte data) {
-		this.list.add(data);
+		this.stream.write(data);
 	}
 
 	public void writeShort(short data) {
@@ -94,17 +93,13 @@ public class FileWriter {
 		this.writeString(name);
 	}
 
-	public void reset() {
-		this.list.clear();
+	public byte[] toByteArray() {
+		return this.stream.toByteArray();
 	}
 
-	public void write(File file) throws IOException {
+	public void writeToFile(File file) throws IOException {
 		FileOutputStream stream = new FileOutputStream(file);
-
-		for(int i = 0; i < this.list.size(); i++) {
-			stream.write(this.list.get(i));
-		}
-
+		stream.write(this.toByteArray());
 		stream.close();
 	}
 }

@@ -5,12 +5,21 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-public class FileReader {
+public class Reader {
 	private final byte[] data;
 
 	private int pointer;
 
-	public FileReader(File file) throws IOException {
+	public Reader(byte[] data) {
+		if(data == null || data.length == 0) {
+			throw new IllegalArgumentException("Byte array must be non-null and non-zero in length");
+		}
+
+		this.data = data;
+		this.pointer = 0;
+	}
+
+	public Reader(File file) throws IOException {
 		FileInputStream stream = new FileInputStream(file);
 		this.data = stream.readAllBytes();
 		stream.close();
@@ -114,7 +123,7 @@ public class FileReader {
 
 	public Class<?> readClass() throws ClassNotFoundException {
 		String name = this.readString();
-		return FileReader.class.getClassLoader().loadClass(name);
+		return Reader.class.getClassLoader().loadClass(name);
 	}
 
 	public void reset() {

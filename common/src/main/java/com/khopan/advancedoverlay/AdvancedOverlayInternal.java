@@ -10,7 +10,6 @@ import com.khopan.advancedoverlay.common.api.IExtension;
 import com.khopan.advancedoverlay.common.api.IModule;
 import com.khopan.advancedoverlay.common.api.annotation.Name;
 import com.khopan.advancedoverlay.common.data.Module;
-import com.khopan.advancedoverlay.common.io.ChannelWriter;
 import com.khopan.advancedoverlay.common.screen.ChannelListScreen.ChannelEntry;
 
 import net.minecraft.client.Minecraft;
@@ -98,14 +97,7 @@ public final class AdvancedOverlayInternal {
 	public static void saveChannelFile() {
 		File file = AdvancedOverlayInternal.getChannelFile();
 		new Thread(() -> {
-			ChannelWriter writer = new ChannelWriter();
-			writer.writeChannelList(AdvancedOverlayInternal.CHANNEL_LIST);
 
-			try {
-				writer.write(file);
-			} catch(Throwable Errors) {
-				Errors.printStackTrace();
-			}
 		}).start();
 	}
 

@@ -16,10 +16,6 @@ public final class AdvancedOverlay {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(AdvancedOverlay.MOD_NAME);
 
-	public static void initialize() {
-		AdvancedOverlay.LOGGER.info("Initializing {} Common", AdvancedOverlay.MOD_NAME);
-	}
-
 	public static List<ChannelEntry> getChannelList() {
 		return Collections.unmodifiableList(AdvancedOverlayInternal.CHANNEL_LIST);
 	}
