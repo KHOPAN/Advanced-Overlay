@@ -40,6 +40,10 @@ public class RealTimeModule implements IModule {
 
 	@Override
 	public void render(PoseStack stack, float tickDelta, int x, int y, int width, int height) {
+		if(this.minecraft == null) {
+			return;
+		}
+
 		this.minecraft.font.drawShadow(stack, this.text, x, y, 0xFFFFFF);
 	}
 

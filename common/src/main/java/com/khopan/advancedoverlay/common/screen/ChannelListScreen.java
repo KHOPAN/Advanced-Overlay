@@ -75,24 +75,18 @@ public class ChannelListScreen extends Screen {
 		AdvancedOverlayInternal.removeChannel(channel);
 		this.list.remove(channel);
 		this.list.setSelected(null);
-		AdvancedOverlayInternal.saveChannelFile();
+		AdvancedOverlayInternal.saveFile();
 	}
 
 	private void addChannel(ChannelEntry channel) {
 		AdvancedOverlayInternal.addChannel(channel);
 		this.list.add(channel);
 		this.list.setSelected(channel);
-		AdvancedOverlayInternal.saveChannelFile();
+		AdvancedOverlayInternal.saveFile();
 	}
 
 	private void updateChannel(ChannelEntry channel) {
-		ChannelEntry selected = this.list.getSelected();
-
-		if(selected == null) {
-			return;
-		}
-
-		int index = this.list.indexOf(selected);
+		int index = this.list.indexOf(channel);
 
 		if(index == -1) {
 			return;
@@ -100,7 +94,7 @@ public class ChannelListScreen extends Screen {
 
 		AdvancedOverlayInternal.setChannel(index, channel);
 		this.list.set(index, channel);
-		AdvancedOverlayInternal.saveChannelFile();
+		AdvancedOverlayInternal.saveFile();
 	}
 
 	private void updateButtonActive() {
@@ -119,10 +113,11 @@ public class ChannelListScreen extends Screen {
 	class ChannelList extends ObjectSelectionList<ChannelEntry> {
 		private ChannelList() {
 			super(ChannelListScreen.this.minecraft, ChannelListScreen.this.width, ChannelListScreen.this.height, 32, ChannelListScreen.this.height - 64, 20);
-			AdvancedOverlay.forEachChannel(channel -> this.addEntry(channel));
+			AdvancedOverlay.forEachChannel(this :: add);
 		}
 
 		private void add(ChannelEntry channel) {
+			channel.bind(ChannelListScreen.this);
 			this.addEntry(channel);
 		}
 
@@ -131,6 +126,7 @@ public class ChannelListScreen extends Screen {
 		}
 
 		private void set(int inedx, ChannelEntry channel) {
+			channel.bind(ChannelListScreen.this);
 			this.children().set(inedx, channel);
 		}
 
@@ -157,13 +153,15 @@ public class ChannelListScreen extends Screen {
 		}
 	}
 
-	public class ChannelEntry extends ObjectSelectionList.Entry<ChannelEntry> {
+	public static class ChannelEntry extends ObjectSelectionList.Entry<ChannelEntry> {
 		public final List<ModuleEntry> moduleList;
 
 		public String name;
 		public Location location;
 		public double verticalSpacing;
 		public double horizontalSpacing;
+
+		private ChannelListScreen screen;
 
 		private ChannelEntry() {
 			this.moduleList = new ArrayList<>();
@@ -173,6 +171,10 @@ public class ChannelListScreen extends Screen {
 			this.horizontalSpacing = 0.0d;
 		}
 
+		public void bind(ChannelListScreen screen) {
+			this.screen = screen;
+		}
+
 		@Override
 		public Component getNarration() {
 			return Component.literal(this.name);
@@ -180,17 +182,29 @@ public class ChannelListScreen extends Screen {
 
 		@Override
 		public void render(PoseStack stack, int index, int top, int left, int width, int height, int mouseX, int mouseY, boolean mouseOver, float partialTick) {
-			ChannelListScreen.this.font.drawShadow(stack, this.name, (((float) ChannelListScreen.this.list.getRectangle().width()) - ((float) ChannelListScreen.this.font.width(this.name))) * 0.5f, ((float) top) + (((float) height) - ((float) ChannelListScreen.this.font.lineHeight)) * 0.5f, 0xFFFFFF);
+			if(this.screen == null) {
+				return;
+			}
+
+			this.screen.font.drawShadow(stack, this.name, (((float) this.screen.list.getRectangle().width()) - ((float) this.screen.font.width(this.name))) * 0.5f, ((float) top) + (((float) height) - ((float) this.screen.font.lineHeight)) * 0.5f, 0xFFFFFF);
 		}
 
 		@Override
 		public boolean mouseClicked(double mouseX, double mouseY, int button) {
+			if(this.screen == null) {
+				return false;
+			}
+
 			if(button == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
-				ChannelListScreen.this.list.setSelected(this);
+				this.screen.list.setSelected(this);
 				return true;
 			}
 
 			return false;
+		}
+
+		public static ChannelEntry constructInvalid() {
+			return new ChannelEntry();
 		}
 	}
 }

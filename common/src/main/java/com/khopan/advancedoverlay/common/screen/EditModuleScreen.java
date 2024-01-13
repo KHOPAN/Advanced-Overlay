@@ -99,14 +99,11 @@ public class EditModuleScreen extends Screen {
 	class ModuleList extends ObjectSelectionList<ModuleEntry> {
 		public ModuleList() {
 			super(EditModuleScreen.this.minecraft, EditModuleScreen.this.width, EditModuleScreen.this.height, 32, EditModuleScreen.this.height - 64, 20);
-
-			for(int i = 0; i < EditModuleScreen.this.moduleList.size(); i++) {
-				ModuleEntry module = EditModuleScreen.this.moduleList.get(i);
-				this.addEntry(module);
-			}
+			EditModuleScreen.this.moduleList.forEach(this :: add);
 		}
 
 		private void add(ModuleEntry module) {
+			module.bind(EditModuleScreen.this);
 			this.addEntry(module);
 		}
 
@@ -133,13 +130,19 @@ public class EditModuleScreen extends Screen {
 		}
 	}
 
-	public class ModuleEntry extends ObjectSelectionList.Entry<ModuleEntry> {
+	public static class ModuleEntry extends ObjectSelectionList.Entry<ModuleEntry> {
 		public final IModule instance;
 		public final String name;
+
+		private EditModuleScreen screen;
 
 		private ModuleEntry(IModule instance, String name) {
 			this.instance = instance;
 			this.name = name;
+		}
+
+		public void bind(EditModuleScreen screen) {
+			this.screen = screen;
 		}
 
 		@Override
@@ -149,17 +152,29 @@ public class EditModuleScreen extends Screen {
 
 		@Override
 		public void render(PoseStack stack, int index, int top, int left, int width, int height, int mouseX, int mouseY, boolean mouseOver, float partialTick) {
-			EditModuleScreen.this.font.drawShadow(stack, this.name, (((float) EditModuleScreen.this.list.getRectangle().width()) - ((float) EditModuleScreen.this.font.width(this.name))) * 0.5f, ((float) top) + (((float) height) - ((float) EditModuleScreen.this.font.lineHeight)) * 0.5f, 0xFFFFFF);
+			if(this.screen == null) {
+				return;
+			}
+
+			this.screen.font.drawShadow(stack, this.name, (((float) this.screen.list.getRectangle().width()) - ((float) this.screen.font.width(this.name))) * 0.5f, ((float) top) + (((float) height) - ((float) this.screen.font.lineHeight)) * 0.5f, 0xFFFFFF);
 		}
 
 		@Override
 		public boolean mouseClicked(double mouseX, double mouseY, int button) {
+			if(this.screen == null) {
+				return false;
+			}
+
 			if(button == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
-				EditModuleScreen.this.list.setSelected(this);
+				this.screen.list.setSelected(this);
 				return true;
 			}
 
 			return false;
+		}
+
+		public static ModuleEntry constructInvalid(IModule instance, String name) {
+			return new ModuleEntry(instance, name);
 		}
 	}
 }
