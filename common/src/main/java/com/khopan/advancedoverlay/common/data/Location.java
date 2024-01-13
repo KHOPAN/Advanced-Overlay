@@ -1,10 +1,12 @@
 package com.khopan.advancedoverlay.common.data;
 
+import java.io.Serializable;
+
 import com.khopan.advancedoverlay.common.Text;
 
 import net.minecraft.network.chat.Component;
 
-public enum Location {
+public enum Location implements Serializable {
 	TOP_LEFT(Text.TOP_LEFT, 0, 0),
 	TOP_CENTER(Text.TOP_CENTER, 1, 0),
 	TOP_RIGHT(Text.TOP_RIGHT, 2, 0),

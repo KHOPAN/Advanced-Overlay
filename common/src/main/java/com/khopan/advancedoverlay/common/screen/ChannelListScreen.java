@@ -1,5 +1,6 @@
 package com.khopan.advancedoverlay.common.screen;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,7 +158,9 @@ public class ChannelListScreen extends Screen {
 		}
 	}
 
-	public class ChannelEntry extends ObjectSelectionList.Entry<ChannelEntry> {
+	public class ChannelEntry extends ObjectSelectionList.Entry<ChannelEntry> implements Serializable {
+		private static final long serialVersionUID = -1563498130864358328L;
+
 		public final List<ModuleEntry> moduleList;
 
 		public String name;
