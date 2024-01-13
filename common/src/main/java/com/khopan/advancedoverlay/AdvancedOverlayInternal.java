@@ -18,9 +18,7 @@ import com.khopan.advancedoverlay.common.api.IModule;
 import com.khopan.advancedoverlay.common.api.annotation.Name;
 import com.khopan.advancedoverlay.common.data.Location;
 import com.khopan.advancedoverlay.common.data.Module;
-import com.khopan.advancedoverlay.common.screen.ChannelListScreen;
 import com.khopan.advancedoverlay.common.screen.ChannelListScreen.ChannelEntry;
-import com.khopan.advancedoverlay.common.screen.EditModuleScreen;
 import com.khopan.advancedoverlay.common.screen.EditModuleScreen.ModuleEntry;
 
 import net.minecraft.client.Minecraft;
@@ -166,8 +164,6 @@ public final class AdvancedOverlayInternal {
 			}
 
 			JsonArray root = element.getAsJsonArray();
-			ChannelListScreen channelListScreen = new ChannelListScreen(null);
-			EditModuleScreen editModuleScreen = new EditModuleScreen(null, null);
 			List<ChannelEntry> list = new ArrayList<>();
 
 			for(int x = 0; x < root.size(); x++) {
@@ -178,7 +174,7 @@ public final class AdvancedOverlayInternal {
 				}
 
 				JsonObject channelEntry = rootElement.getAsJsonObject();
-				ChannelEntry channelEntryInstance = ChannelEntry.constructInvalid(channelListScreen);
+				ChannelEntry channelEntryInstance = ChannelEntry.constructInvalid();
 				channelEntryInstance.name = channelEntry.get("name").getAsString();
 				channelEntryInstance.location = Location.valueOf(channelEntry.get("location").getAsString().toUpperCase());
 				channelEntryInstance.verticalSpacing = channelEntry.get("verticalSpacing").getAsDouble();
@@ -210,7 +206,7 @@ public final class AdvancedOverlayInternal {
 						throw new InternalError("Error while loading class from JSON file", Errors);
 					}
 
-					ModuleEntry moduleEntryInstance = ModuleEntry.constructInvalid(editModuleScreen, instance, moduleName);
+					ModuleEntry moduleEntryInstance = ModuleEntry.constructInvalid(instance, moduleName);
 					channelEntryInstance.moduleList.add(moduleEntryInstance);
 				}
 
