@@ -1,6 +1,5 @@
 package com.khopan.advancedoverlay.common.screen;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.lwjgl.glfw.GLFW;
@@ -134,11 +133,8 @@ public class EditModuleScreen extends Screen {
 		}
 	}
 
-	public class ModuleEntry extends ObjectSelectionList.Entry<ModuleEntry> implements Serializable {
-		private static final long serialVersionUID = 4007785890270690089L;
-
-		public transient final IModule instance;
-
+	public class ModuleEntry extends ObjectSelectionList.Entry<ModuleEntry> {
+		public final IModule instance;
 		public final String name;
 
 		private ModuleEntry(IModule instance, String name) {
@@ -164,6 +160,10 @@ public class EditModuleScreen extends Screen {
 			}
 
 			return false;
+		}
+
+		public static ModuleEntry constructInvalid(EditModuleScreen screen, IModule instance, String name) {
+			return screen.new ModuleEntry(instance, name);
 		}
 	}
 }

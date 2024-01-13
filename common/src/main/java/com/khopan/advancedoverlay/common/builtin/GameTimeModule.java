@@ -40,12 +40,21 @@ public class GameTimeModule implements IModule {
 
 	@Override
 	public void render(PoseStack stack, float tickDelta, int x, int y, int width, int height) {
+		if(this.minecraft == null) {
+			return;
+		}
+
 		this.minecraft.font.drawShadow(stack, this.text, x, y, 0xFFFFFF);
 	}
 
 	@Override
 	public void tick(Minecraft minecraft) {
 		this.minecraft = minecraft;
+
+		if(this.minecraft.level == null) {
+			return;
+		}
+
 		long dayTime = this.minecraft.level.getDayTime();
 		long wrappedTime = dayTime % 24000L;
 		long realTimeMilliseconds = wrappedTime * 3600L;

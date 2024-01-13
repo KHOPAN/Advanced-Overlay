@@ -1,6 +1,5 @@
 package com.khopan.advancedoverlay.common.screen;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,14 +75,14 @@ public class ChannelListScreen extends Screen {
 		AdvancedOverlayInternal.removeChannel(channel);
 		this.list.remove(channel);
 		this.list.setSelected(null);
-		AdvancedOverlayInternal.saveChannelFile();
+		AdvancedOverlayInternal.saveFile();
 	}
 
 	private void addChannel(ChannelEntry channel) {
 		AdvancedOverlayInternal.addChannel(channel);
 		this.list.add(channel);
 		this.list.setSelected(channel);
-		AdvancedOverlayInternal.saveChannelFile();
+		AdvancedOverlayInternal.saveFile();
 	}
 
 	private void updateChannel(ChannelEntry channel) {
@@ -101,7 +100,7 @@ public class ChannelListScreen extends Screen {
 
 		AdvancedOverlayInternal.setChannel(index, channel);
 		this.list.set(index, channel);
-		AdvancedOverlayInternal.saveChannelFile();
+		AdvancedOverlayInternal.saveFile();
 	}
 
 	private void updateButtonActive() {
@@ -158,9 +157,7 @@ public class ChannelListScreen extends Screen {
 		}
 	}
 
-	public class ChannelEntry extends ObjectSelectionList.Entry<ChannelEntry> implements Serializable {
-		private static final long serialVersionUID = -1563498130864358328L;
-
+	public class ChannelEntry extends ObjectSelectionList.Entry<ChannelEntry> {
 		public final List<ModuleEntry> moduleList;
 
 		public String name;
@@ -194,6 +191,10 @@ public class ChannelListScreen extends Screen {
 			}
 
 			return false;
+		}
+
+		public static ChannelEntry constructInvalid(ChannelListScreen screen) {
+			return screen.new ChannelEntry();
 		}
 	}
 }

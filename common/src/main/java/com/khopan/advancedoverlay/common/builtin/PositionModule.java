@@ -33,12 +33,21 @@ public class PositionModule implements IModule {
 
 	@Override
 	public void render(PoseStack stack, float tickDelta, int x, int y, int width, int height) {
+		if(this.minecraft == null) {
+			return;
+		}
+
 		this.minecraft.font.drawShadow(stack, this.text, x, y, 0xFFFFFF);
 	}
 
 	@Override
 	public void tick(Minecraft minecraft) {
 		this.minecraft = minecraft;
+
+		if(this.minecraft.player == null) {
+			return;
+		}
+
 		Vec3 position = this.minecraft.player.position();
 		this.text = String.format(Locale.ROOT, "X: %.3f Y: %.5f Z: %.3f", position.x, position.y, position.z);
 	}
