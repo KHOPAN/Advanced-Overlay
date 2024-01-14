@@ -11,7 +11,7 @@ authors = "KHOPAN"
 description = '''
 
 '''
-#logoFile = ""
+logoFile = "logo.png"
 
 [[dependencies.advancedoverlay]]
 modId = "forge"
