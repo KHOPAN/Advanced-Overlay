@@ -5,7 +5,7 @@ license = "MIT License"
 
 [[mods]]
 modId = "advancedoverlay"
-version = "1.0.0"
+version = "1.1.0"
 displayName = "Advanced Overlay"
 authors = "KHOPAN"
 description = '''
