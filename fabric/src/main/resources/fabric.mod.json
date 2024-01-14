@@ -16,6 +16,10 @@
 			"com.khopan.advancedoverlay.fabric.AdvancedOverlayFabric"
 		],
 
+		"modmenu": [
+			"com.khopan.advancedoverlay.fabric.AdvancedOverlayFabric"
+		],
+
 		"advancedoverlay": [
 			"com.khopan.advancedoverlay.common.builtin.CoreExtension"
 		]

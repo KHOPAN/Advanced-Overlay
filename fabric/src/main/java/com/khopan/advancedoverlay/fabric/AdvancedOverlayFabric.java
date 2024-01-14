@@ -8,12 +8,15 @@ import com.khopan.advancedoverlay.AdvancedOverlay;
 import com.khopan.advancedoverlay.AdvancedOverlayInternal;
 import com.khopan.advancedoverlay.common.ExtensionEntry;
 import com.khopan.advancedoverlay.common.api.IExtension;
+import com.khopan.advancedoverlay.common.screen.ChannelListScreen;
+import com.terraformersmc.modmenu.api.ConfigScreenFactory;
+import com.terraformersmc.modmenu.api.ModMenuApi;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.entrypoint.EntrypointContainer;
 
-public class AdvancedOverlayFabric implements ClientModInitializer {
+public class AdvancedOverlayFabric implements ClientModInitializer, ModMenuApi {
 	@Override
 	public void onInitializeClient() {
 		AdvancedOverlay.LOGGER.info("Initializing {} Fabric", AdvancedOverlay.MOD_NAME);
@@ -37,5 +40,10 @@ public class AdvancedOverlayFabric implements ClientModInitializer {
 		}
 
 		AdvancedOverlayInternal.initialize(result);
+	}
+
+	@Override
+	public ConfigScreenFactory<?> getModConfigScreenFactory() {
+		return screen -> new ChannelListScreen(screen);
 	}
 }
